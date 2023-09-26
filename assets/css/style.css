@@ -5,3 +5,13 @@ textarea {
 .cor-azul {
     color: red;
 }
+
+.headerRegister {
+    background: #009688;
+    color: #fff;
+}
+
+.headerUpdate {
+    background: #17a2b8;
+    color: #fff;
+}

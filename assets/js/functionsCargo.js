@@ -83,6 +83,12 @@ document.addEventListener('DOMContentLoaded', function () {
 $('#tabelaCargo').DataTable();
 
 function openModal() {
+    document.querySelector('#idFuncao').value = "";
+    document.querySelector('#titleModal').innerHTML = "Criar Cargo";
+    document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
+    document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary");
+    document.querySelector('#btnText').innerHTML = "<u>S</u>alvar";
+    document.querySelector("#btnActionForm").setAttribute("accesskey", "s"); 
     $("#modalFormCargo").modal("show");
     $('#txtNome').select();
 }
@@ -92,4 +98,13 @@ function cancelar() {
     document.getElementById("txtDescricao").classList.remove("is-invalid");
     document.getElementById("listStatus").classList.remove("is-invalid");
     document.querySelector("#formCargo").reset();
+}
+
+function EditarCargo() {
+    document.querySelector('#titleModal').innerHTML = "Atualizar Cargo";
+    document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
+    document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+    document.querySelector('#btnText').innerHTML = "<u>A</u>tualizar";
+    document.querySelector("#btnActionForm").setAttribute("accesskey", "a"); 
+    $('#modalFormCargo').modal('show');
 }

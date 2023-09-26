@@ -2,13 +2,14 @@
 <div class="modal fade" id="modalFormCargo" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Novo Cargo</h5>
+            <div class="modal-header headerRegister">
+                <h5 class="modal-title" id="titleModal">Novo Cargo</h5>
             </div>
             <div class="modal-body">
                 <div class="tile">
                     <div class="tile-body">
                         <form id="formCargo" name="formCargo">
+                            <input type="hidden" id="idFuncao" name="idFuncao">
                             <div class="form-group">
                                 <label class="cor-azul">*</label>&nbsp;<label class="control-label">Campo obrigatório</label>
                             </div>
@@ -29,12 +30,12 @@
                                 </select>
                             </div>
                             <div class="tile-footer">
-                                <button class="btn btn-primary" type="submit" tabindex="4" accesskey="s">
+                                <button class="btn btn-primary" id="btnActionForm" type="submit" tabindex="4" accesskey="s">
                                     <i class="fa-solid fa-circle-check"></i>&nbsp;
-                                    <u>S</u>alvar
+                                    <span id="btnText"><u>S</u>alvar</span>
                                 </button>
                                 &nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-secondary" href="#" tabindex="5" accesskey="c" data-dismiss="modal" onclick="cancelar();">
+                                <a class="btn btn-danger" href="#" tabindex="5" accesskey="c" data-dismiss="modal" onclick="cancelar();">
                                     <i class="fa-solid fa-circle-xmark"></i>&nbsp;
                                     <u>C</u>ancelar
                                 </a>
