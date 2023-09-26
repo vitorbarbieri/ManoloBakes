@@ -33,19 +33,13 @@
                         <table class="table table-hover table-bordered" id="tabelaCargo">
                             <thead>
                                 <tr>
+                                    <th>Id</th>
                                     <th>Nome</th>
                                     <th>Descrição</th>
                                     <th>Status</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                </tr>3
                             </tbody>
                         </table>
                     </div>
