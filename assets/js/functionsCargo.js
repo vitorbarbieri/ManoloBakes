@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
             { "data": "id" },
             { "data": "nome" },
             { "data": "descricao" },
-            { "data": "status" }
+            { "data": "status" },
+            { "data": "opcao" }
         ],
         "resonsieve": "true",
         "bDestroy": true,
