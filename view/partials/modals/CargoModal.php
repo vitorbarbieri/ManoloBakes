@@ -28,18 +28,18 @@
                                     <option value="2">Inativo</option>
                                 </select>
                             </div>
+                            <div class="tile-footer">
+                                <button class="btn btn-primary" type="submit" tabindex="4" accesskey="s">
+                                    <i class="fa-solid fa-circle-check"></i>&nbsp;
+                                    <u>S</u>alvar
+                                </button>
+                                &nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-secondary" href="#" tabindex="5" accesskey="c" data-dismiss="modal" onclick="cancelar();">
+                                    <i class="fa-solid fa-circle-xmark"></i>&nbsp;
+                                    <u>C</u>ancelar
+                                </a>
+                            </div>
                         </form>
-                    </div>
-                    <div class="tile-footer">
-                        <button class="btn btn-primary" type="button" tabindex="4" accesskey="s">
-                            <i class="fa-solid fa-circle-check"></i>&nbsp;
-                            <u>S</u>alvar
-                        </button>
-                        &nbsp;&nbsp;&nbsp;
-                        <a class="btn btn-secondary" href="#" tabindex="5" accesskey="c" data-dismiss="modal">
-                            <i class="fa-solid fa-circle-xmark"></i>&nbsp;
-                            <u>C</u>ancelar
-                        </a>
                     </div>
                 </div>
             </div>

@@ -45,4 +45,24 @@ class CargoController extends Controller
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         die();
     }
+
+    public function setCargo()
+    {
+        $strCargo =  strClean($_POST['txtNome']);
+        $strDescricao = strClean($_POST['txtDescricao']);
+        $intStatus = intval($_POST['listStatus']);
+
+        $request = $this->model->insertCargo($strCargo, $strDescricao, $intStatus);
+        if (is_numeric($request) && $request > 0) {
+            $arrResponse = array('status' => true, 'msg' => 'Dados guardados corretamente');
+        } else {
+            if ($request == 'exist') {
+                $arrResponse = array('status' => false, 'msg' => 'Atenção, o cargo já existe');
+            } else {
+                $arrResponse = array('status' => false, 'msg' => 'Não foi possível salvar os dados');
+            }
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }
