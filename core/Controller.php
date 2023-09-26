@@ -11,6 +11,7 @@ class Controller
     public function loadModel()
     {
         $model = get_class($this) . "Model";
+        $model = str_replace("Controller", "", $model);
         $routClass = "model/" . $model . ".php";
         if (file_exists($routClass)) {
             require_once($routClass);

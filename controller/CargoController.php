@@ -15,4 +15,11 @@ class CargoController extends Controller
         $data['page_name'] = "Cargo";
         $this->views->getView($this, "cargo", $data);
     }
+
+    public function getCargos()
+    {
+        $arrData = $this->model->selectCargos();
+        echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }
