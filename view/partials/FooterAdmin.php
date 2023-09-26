@@ -8,6 +8,9 @@
 <script src="<?= media(); ?>/js/fontawesome.js"></script>
 <!-- The javascript plugin to display page loading on top-->
 <script src="<?= media() ?>/js/plugins/pace.min.js"></script>
+<!-- Data table plugin-->
+<script type="text/javascript" src="<?= media(); ?>/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<?= media(); ?>/js/plugins/dataTables.bootstrap.min.js"></script>
 
 <?php if ($data['page_name'] == "Cargo") { ?>
     <script src="<?= media(); ?>/js/functionsCargo.js"></script>
