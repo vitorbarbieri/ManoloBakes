@@ -2,6 +2,7 @@
 
 class CargoModel extends Mysql
 {
+    public $intId;
     public $strCargo;
 	public $strDescricao;
 	public $intStatus;
@@ -15,6 +16,14 @@ class CargoModel extends Mysql
     {
         $sql = "SELECT * FROM cargo";
         $request = $this->select_all($sql);
+        return $request;
+    }
+
+	public function selectCargo(int $id)
+    {
+		$this->intId = $id;
+        $sql = "SELECT * FROM cargo WHERE id = $this->intId";
+        $request = $this->select($sql);
         return $request;
     }
 

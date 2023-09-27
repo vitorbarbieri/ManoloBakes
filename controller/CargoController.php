@@ -46,6 +46,22 @@ class CargoController extends Controller
         die();
     }
 
+    public function getCargo(int $id)
+    {
+        $intId = intval(strClean($id));
+        
+        if ($intId > 0) {
+            $arrData = $this->model->selectCargo($intId);
+            if (empty($arrData)) {
+                $arrResponse = array('status' => false, 'msg' => "Cargo não existe");
+            } else {
+                $arrResponse = array('status' => true, 'data' => $arrData);
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
     public function setCargo()
     {
         $strCargo =  strClean($_POST['txtNome']);
