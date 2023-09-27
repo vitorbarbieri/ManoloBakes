@@ -49,7 +49,7 @@ class CargoController extends Controller
     public function getCargo(int $id)
     {
         $intId = intval(strClean($id));
-        
+
         if ($intId > 0) {
             $arrData = $this->model->selectCargo($intId);
             if (empty($arrData)) {
@@ -65,9 +65,9 @@ class CargoController extends Controller
     public function setCargo()
     {
         $indId = intval(strClean($_POST['idCargo']));
-		$strCargo = strClean($_POST['txtNome']);
-		$strDescricao = strClean($_POST['txtDescricao']);
-		$intStatus = strClean($_POST['listStatus']);
+        $strCargo = strClean($_POST['txtNome']);
+        $strDescricao = strClean($_POST['txtDescricao']);
+        $intStatus = strClean($_POST['listStatus']);
 
         if ($indId == 0) {
             $request = $this->model->insertCargo($strCargo, $strDescricao, $intStatus);
@@ -83,7 +83,6 @@ class CargoController extends Controller
             } else {
                 $arrResponse = array('status' => true, 'msg' => 'Dados atualizados corretamente');
             }
-            
         } else {
             if ($request == 'exist') {
                 $arrResponse = array('status' => false, 'msg' => 'Atenção, o cargo já existe');
@@ -91,6 +90,26 @@ class CargoController extends Controller
                 $arrResponse = array('status' => false, 'msg' => 'Não foi possível salvar os dados');
             }
         }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function delCargo()
+    {
+        $intId = intval(strClean($_POST['id']));
+
+        $request = $this->model->deleteCargo($intId);
+
+        if ($request == "ok") {
+            $arrResponse = array('status' => true, 'msg' => 'Dado excluído com sucesso');
+        } else {
+            if ($request == 'exist') {
+                $arrResponse = array('status' => false, 'msg' => 'Não é possível excluir, há Usuário associada ao Cargo');
+            } else {
+                $arrResponse = array('status' => false, 'msg' => 'Não foi possível excluir os dados');
+            }
+        }
+
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }

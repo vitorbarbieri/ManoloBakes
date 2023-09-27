@@ -64,4 +64,27 @@ class CargoModel extends Mysql
 			return $request;
 		}
 	}
+
+	public function deleteCargo(int $id)
+	{
+		$this->intId = $id;
+
+		$sql = "SELECT * FROM pessoa WHERE id_cargo = $this->intId";
+		$request = $this->select_all($sql);
+
+		if (empty($request)) {
+			$sql = "DELETE FROM cargo WHERE id = $this->intId";
+			$request = $this->delete($sql); // Refer-se ao método DELETE do arquivo MySql
+			if ($request) {
+				$request = "ok";
+			} else {
+				$request = "error";
+			}
+			
+		} else {
+			$request = "exist";
+		}
+
+		return $request;
+	}
 }
