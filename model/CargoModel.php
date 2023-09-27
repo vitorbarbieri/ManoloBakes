@@ -34,16 +34,34 @@ class CargoModel extends Mysql
 		$this->intStatus = $status;
 
 		$sql = "SELECT * FROM cargo WHERE nome = '{$this->strCargo}'";
-		$request = $this->select_all($sql);
+		$request = $this->select($sql);
 
 		if (empty($request)) {
-			$query_insert = "INSERT INTO cargo (nome, descricao, status) VALUES (?, ?, ?)";
+			$sql = "INSERT INTO cargo (nome, descricao, status) VALUES (?, ?, ?)";
 			$arrData = array($this->strCargo, $this->strDescricao, $this->intStatus);
-			$request = $this->insert($query_insert, $arrData);
+			$request = $this->insert($sql, $arrData);
 			$return = $request;
 		} else {
 			$return = "exist";
 		}
 		return $return;
     }
+
+	public function updateCargo(int $id, string $cargo, string $descricao, int $status)
+	{
+        $this->intId = $id;
+        $this->strCargo = $cargo;
+		$this->strDescricao = $descricao;
+		$this->intStatus = $status;
+
+		$sql = "SELECT * FROM cargo WHERE id = '{$this->intId}'";
+		$request = $this->select($sql);
+
+		if (!empty($request)) {
+			$sql = "UPDATE cargo SET nome = ?, descricao = ?, status = ? WHERE id = $this->intId";
+			$arrData = array($this->strCargo, $this->strDescricao, $this->intStatus);
+			$request = $this->update($sql, $arrData);
+			return $request;
+		}
+	}
 }

@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     formCargo.onsubmit = function (e) {
         e.preventDefault();
 
-        var intId = document.querySelector("#idFuncao").value;
+        var intId = document.querySelector("#idCargo").value;
         var strNome = document.querySelector('#txtNome').value;
         var strDescricao = document.querySelector('#txtDescricao').value;
         var intStatus = document.querySelector('#listStatus').value;
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
 $('#tabelaCargo').DataTable();
 
 function openModal() {
-    document.querySelector('#idFuncao').value = "";
+    document.querySelector('#idCargo').value = "";
     document.querySelector('#titleModal').innerHTML = "Criar Cargo";
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
     document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary");
@@ -129,7 +129,7 @@ function EditarCargo(idCargo) {
         if (request.readyState == 4 && request.status == 200) {
             var objData = JSON.parse(request.responseText);
             if (objData.status) {
-                document.querySelector('#idFuncao').value = objData.data.id;
+                document.querySelector('#idCargo').value = objData.data.id;
                 document.querySelector('#txtNome').value = objData.data.nome;
                 document.querySelector('#txtDescricao').value = objData.data.descricao;
 

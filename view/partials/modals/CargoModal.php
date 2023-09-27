@@ -9,7 +9,7 @@
                 <div class="tile">
                     <div class="tile-body">
                         <form id="formCargo" name="formCargo">
-                            <input type="hidden" id="idFuncao" name="idFuncao">
+                            <input type="hidden" id="idCargo" name="idCargo">
                             <div class="form-group">
                                 <label class="cor-azul">*</label>&nbsp;<label class="control-label">Campo obrigatório</label>
                             </div>

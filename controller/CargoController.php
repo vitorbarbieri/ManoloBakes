@@ -64,13 +64,26 @@ class CargoController extends Controller
 
     public function setCargo()
     {
-        $strCargo =  strClean($_POST['txtNome']);
-        $strDescricao = strClean($_POST['txtDescricao']);
-        $intStatus = intval($_POST['listStatus']);
+        $indId = intval(strClean($_POST['idCargo']));
+		$strCargo = strClean($_POST['txtNome']);
+		$strDescricao = strClean($_POST['txtDescricao']);
+		$intStatus = strClean($_POST['listStatus']);
 
-        $request = $this->model->insertCargo($strCargo, $strDescricao, $intStatus);
-        if (is_numeric($request) && $request > 0) {
-            $arrResponse = array('status' => true, 'msg' => 'Dados guardados corretamente');
+        if ($indId == 0) {
+            $request = $this->model->insertCargo($strCargo, $strDescricao, $intStatus);
+            $option = 1;
+        } else {
+            $request = $this->model->updateCargo($indId, $strCargo, $strDescricao, $intStatus);
+            $option = 2;
+        }
+
+        if ($request || is_numeric($request) && $request > 0) {
+            if ($option == 1) {
+                $arrResponse = array('status' => true, 'msg' => 'Dados guardados corretamente');
+            } else {
+                $arrResponse = array('status' => true, 'msg' => 'Dados atualizados corretamente');
+            }
+            
         } else {
             if ($request == 'exist') {
                 $arrResponse = array('status' => false, 'msg' => 'Atenção, o cargo já existe');
