@@ -15,15 +15,15 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="txtNome">Nome</label>&nbsp;<label class="cor-azul">*</label>
-                                <input class="form-control" id="txtNome" name="txtNome" tabindex="1" type="text" placeholder="Nome do Cargo" autofocus>
+                                <input class="form-control" id="txtNome" name="txtNome" tabindex="1" type="text" placeholder="Nome do Cargo" onBlur="alterarCSS();" autofocus>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="txtDescricao">Descrição</label>&nbsp;<label class="cor-azul">*</label>
-                                <textarea class="form-control" id="txtDescricao" name="txtDescricao" tabindex="2" rows="2" placeholder="Descrição do Cargo"></textarea>
+                                <textarea class="form-control" id="txtDescricao" name="txtDescricao" tabindex="2" rows="2" placeholder="Descrição do Cargo" onBlur="alterarCSS();"></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="listStatus">Status</label>&nbsp;<label class="cor-azul">*</label>
-                                <select class="form-control" id="listStatus" name="listStatus" tabindex="3">
+                                <select class="form-control" id="listStatus" name="listStatus" tabindex="3" onchange="alterarCSS();">
                                     <option value="0">-- Selecionar --</option>
                                     <option value="1">Ativo</option>
                                     <option value="2">Inativo</option>

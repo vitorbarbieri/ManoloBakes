@@ -101,6 +101,18 @@ function cancelar() {
     document.querySelector("#formCargo").reset();
 }
 
+function alterarCSS() {
+    if (document.querySelector('#txtNome').value != "") {
+        document.getElementById("txtNome").classList.remove("is-invalid");
+    }
+    if (document.querySelector('#txtDescricao').value != "") {
+        document.getElementById("txtDescricao").classList.remove("is-invalid");
+    }
+    if (document.querySelector('#listStatus').value != 0) {
+        document.getElementById("listStatus").classList.remove("is-invalid");
+    }
+}
+
 function EditarCargo(idCargo) {
     document.querySelector('#titleModal').innerHTML = "Atualizar Cargo";
     document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
