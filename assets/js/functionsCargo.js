@@ -204,7 +204,6 @@ function PermissaoCargo(idCargo) {
             document.querySelector("#formPermissao").addEventListener('submit', setPermissao, false);
         }
     }
-
 }
 
 function setPermissao() {

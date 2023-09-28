@@ -21,6 +21,9 @@
 <?php if ($data['page_name'] == "Cargo") { ?>
     <script src="<?= media(); ?>/js/functionsCargo.js"></script>
 <?php } ?>
+<?php if ($data['page_name'] == "Usuario") { ?>
+    <script src="<?= media(); ?>/js/functionsUsuario.js"></script>
+<?php } ?>
 
 </body>
 
