@@ -176,7 +176,7 @@ function DeletarCargo(idCargo) {
             request.send(strData);
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
-                    var objData = JSON.parse(request.responseText)
+                    var objData = JSON.parse(request.responseText);
 
                     if (objData.status) {
                         swal("Eliminar", objData.msg, "success");
@@ -188,4 +188,43 @@ function DeletarCargo(idCargo) {
             }
         }
     });
+}
+
+function PermissaoCargo(idCargo) {
+    var id = idCargo;
+
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url + '/Permissao/getPermissoesCargo/' + id;
+    request.open("GET", ajaxUrl, true);
+    request.send();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            document.querySelector("#contentAjax").innerHTML = request.responseText;
+            $('.modalPermissao').modal('show');
+            document.querySelector("#formPermissao").addEventListener('submit', setPermissao, false);
+        }
+    }
+
+}
+
+function setPermissao() {
+    event.preventDefault();
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url + "/Permissao/setPermissao";
+    var formElement = document.querySelector("#formPermissao");
+    var formData = new FormData(formElement);
+    request.open("POST", ajaxUrl, true);
+    request.send(formData);
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                swal("Permissão de Usuário", objData.msg, "success");
+                $('.modalPermissao').modal('hide');
+            } else {
+                swal("Erro", objData.msg, "error");
+            }
+        }
+    }
 }

@@ -29,13 +29,13 @@ class CargoController extends Controller
 
             $arrData[$i]['opcao'] = '
                 <div class="text-center">
-                    <button class="btn btn-secondary btn-sm btnPermisosRol" onClick="PermissaoCargo(' . $arrData[$i]['id'] . ')" title="Permissão" type="button">
+                    <button class="btn btn-secondary btn-sm" onClick="PermissaoCargo(' . $arrData[$i]['id'] . ')" title="Permissão" type="button">
                         <i class="fa-solid fa-key"></i>
                     </button>
-                    <button class="btn btn-primary btn-sm btnEditRol" onClick="EditarCargo(' . $arrData[$i]['id'] . ')" title="Editar" type="button">
+                    <button class="btn btn-primary btn-sm" onClick="EditarCargo(' . $arrData[$i]['id'] . ')" title="Editar" type="button">
                         <i class="fa-solid fa-pencil"></i>
                     </button>
-                    <button class="btn btn-danger btn-sm btnDelRol" onClick="DeletarCargo(' . $arrData[$i]['id'] . ')" title="Eliminar" type="button">
+                    <button class="btn btn-danger btn-sm" onClick="DeletarCargo(' . $arrData[$i]['id'] . ')" title="Eliminar" type="button">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </div>
