@@ -51,8 +51,6 @@
                                     <label class="cor-azul">*</label>
                                     <select class="form-control" id="listCargo" name="listCargo" tabindex="6" onchange="AlterarCSS();">
                                         <option value="0">-- Selecionar --</option>
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Vendedor</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">

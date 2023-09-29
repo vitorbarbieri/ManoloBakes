@@ -62,6 +62,19 @@ class CargoController extends Controller
         die();
     }
 
+    public function GetSelectCargos()
+    {
+        $htmlOptions = "";
+        $arrData = $this->model->selectCargos();
+        if (count($arrData) > 0) {
+            for ($i = 0; $i < count($arrData); $i++) {
+                $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '">' . $arrData[$i]['nome'] . '</option>';
+            }
+        }
+        echo $htmlOptions;
+        die();
+    }
+
     public function setCargo()
     {
         $indId = intval(strClean($_POST['idCargo']));

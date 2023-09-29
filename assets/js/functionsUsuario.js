@@ -1,5 +1,4 @@
-function OpenModal()
-{
+function OpenModal() {
     document.querySelector('#idUsuario').value = "";
     document.querySelector('#titleModal').innerHTML = "Criar Usuário";
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
@@ -9,6 +8,25 @@ function OpenModal()
     document.querySelector("#formUsuario").reset();
     $("#modalFormUsuario").modal("show");
     $('#txtIdentificacao').select();
+}
+
+window.addEventListener('load', function () {
+    CarregarCargosUsuario();
+}, false);
+
+function CarregarCargosUsuario() {
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url + '/Cargo/GetSelectCargos';
+    request.open("GET", ajaxUrl, true);  // Abrir requisição ao servidor
+    request.send(); // Enviar requisição ao servidor
+    request.onreadystatechange = function () { // Obter o reseultado da requisição AJAX
+        if (request.readyState == 4 && request.status == 200) {
+            document.querySelector('#listCargo').innerHTML += request.responseText;
+            // document.querySelector('#listCargo').value += 0;
+            // $('#listCargo').selectpicker('render');
+            // $('#listCargo').selectpicker('refresh');
+        }
+    }
 }
 
 function Cancelar() {
