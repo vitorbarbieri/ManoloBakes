@@ -38,10 +38,39 @@ class UsuarioController extends Controller
                 } else {
                     $arrResponse = array('status' => false, 'msg' => 'Erro ao salvar as informações');
                 }
-                
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
+        die();
+    }
+
+    public function GetUsuarios()
+    {
+        $arrData = $this->model->selectUsuarios();
+
+        for ($i = 0; $i < count($arrData); $i++) {
+            if ($arrData[$i]['status'] == 1) {
+                $arrData[$i]['status'] = '<span class="badge badge-success">Ativo</span>';
+            } else {
+                $arrData[$i]['status'] = '<span class="badge badge-danger">Inativo</span>';
+            }
+
+            $arrData[$i]['opcao'] = '
+                <div class="text-center">
+                    <button class="btn btn-secondary btn-sm" onClick="VerUsuario(' . $arrData[$i]['id'] . ')" title="Permissão" type="button">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <button class="btn btn-primary btn-sm" onClick="EditarUsuario(' . $arrData[$i]['id'] . ')" title="Editar" type="button">
+                        <i class="fa-solid fa-pencil"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" onClick="DeletarUsuario(' . $arrData[$i]['id'] . ')" title="Eliminar" type="button">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            ';
+        }
+
+        echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         die();
     }
 }

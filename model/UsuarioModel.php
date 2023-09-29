@@ -43,4 +43,11 @@ class UsuarioModel extends Mysql
 		}
 		return $return;
     }
+
+    public function selectUsuarios()
+    {
+        $sql = "SELECT p.id, p.identificacao, p.nome, p.sobrenome, p.telefone, p.email, p.senha, p.status, c.nome as cNome FROM pessoa p INNER JOIN cargo c ON p.id_cargo = c.id";
+        $request = $this->select_all($sql);
+        return $request;
+    }
 }

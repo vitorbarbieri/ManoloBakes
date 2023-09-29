@@ -33,27 +33,15 @@
                         <table class="table table-hover table-bordered" id="tabelaUsuario">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>Nome</th>
                                     <th>Sobrenome</th>
                                     <th>E-mail</th>
-                                    <th>Telefone</th>
                                     <th>Cargo</th>
                                     <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Carlos</td>
-                                    <td>Hernández</td>
-                                    <td>carlos@gmail.com</td>
-                                    <td>123456789</td>
-                                    <td>Administrador</td>
-                                    <td>Ativo</td>
-                                    <td></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>

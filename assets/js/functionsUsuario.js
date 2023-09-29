@@ -4,9 +4,37 @@ $(document).ready(function () {
     $("#txtTelefone").inputmask("(99)9999[9]-9999"); // Aqui um exemplo para validação de telefone para campo de perfil.
 });
 
-var tableUsuarios;
+var tableUsuario;
 
 document.addEventListener('DOMContentLoaded', function () {
+    // Carregar datatable
+    tableUsuario = $('#tabelaUsuario').dataTable({
+        "aProcessing": true,
+        "aServerSide": true,
+        "scrollY": true,
+        "scrollX": false, // Desativar scrool horizontal
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"
+        },
+        "ajax": {
+            "url": " " + base_url + "/Usuario/GetUsuarios",
+            "dataSrc": ""
+        },
+        "columns": [
+            { "data": "nome", "width": "15%" },
+            { "data": "sobrenome", "width": "20%" },
+            { "data": "email", "width": "30%" },
+            { "data": "cNome", "width": "15%" },
+            { "data": "status", "width": "10%" },
+            { "data": "opcao", "width": "10%" }
+        ],
+        "resonsieve": "true",
+        "bDestroy": true,
+        "iDisplayLength": 10,
+        "order": [[1, "asc"]]
+    });
+
+    // Inserir novo Usuário
     var formUsuario = document.querySelector("#formUsuario");
     formUsuario.onsubmit = function (e) {
         e.preventDefault();
@@ -83,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     $('#modalFormUsuario').modal("hide");
                     Cancelar();
                     swal("Usuário", objData.msg, "success");
-                    tableUsuarios.api().ajax.reload(function () { });
+                    tableUsuario.api().ajax.reload(function () { });
                 } else {
                     $('#txtIdentificacao').select();
                     swal("Erro", objData.msg, "error");
