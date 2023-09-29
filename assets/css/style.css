@@ -15,3 +15,7 @@ textarea {
     background: #17a2b8;
     color: #fff;
 }
+
+.imgSenha:hover {
+    cursor: pointer;
+}

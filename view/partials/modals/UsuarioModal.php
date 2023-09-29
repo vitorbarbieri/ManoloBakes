@@ -54,7 +54,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">Email</label>&nbsp;
+                                    <label class="control-label">Status</label>&nbsp;
                                     <label class="cor-azul">*</label>
                                     <select class="form-control" id="listStatus" name="listStatus" tabindex="7" onchange="AlterarCSS();">
                                         <option value="0">-- Selecionar --</option>
@@ -67,12 +67,17 @@
                                 <div class="form-group col-md-6">
                                     <label class="control-label" for="txtSenha">Senha</label>&nbsp;
                                     <label class="cor-azul">*</label>
-                                    <input class="form-control" id="txtSenha" name="txtSenha" tabindex="8" type="text" placeholder="Digite sua Senha" onBlur="AlterarCSS();">
+                                    <input class="form-control" id="txtSenha" name="txtSenha" tabindex="8" type="password" placeholder="Digite sua Senha" onBlur="AlterarCSS();">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label" for="txtConfirmacaoSenha">Confirmação Senha</label>&nbsp;
                                     <label class="cor-azul">*</label>
-                                    <input class="form-control" id="txtConfirmacaoSenha" name="txtConfirmacaoSenha" tabindex="9" type="text" placeholder="Digite sua Confirmação Senha" onBlur="AlterarCSS();">
+                                    <div style="display: flex; align-items: center;">
+                                        <input class="form-control" id="txtConfirmacaoSenha" name="txtConfirmacaoSenha" tabindex="9" type="password" placeholder="Digite sua Confirmação Senha" onBlur="ValidaSenha();">
+                                        &nbsp;
+                                        <i class="fa-solid fa-eye imgSenha" onclick="MostrarSenha();"></i>
+                                    </div>
+                                    <label id="validaSenha" class="cor-azul" style="display: none;">Senhas não conferem</label>
                                 </div>
                             </div>
                             <div class="tile-footer">

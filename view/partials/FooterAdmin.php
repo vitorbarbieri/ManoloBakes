@@ -16,9 +16,13 @@
 <script type="text/javascript" src="<?= media(); ?>/js/plugins/sweetalert.min.js"></script>
 <!-- Bootstrap-select -->
 <script type="text/javascript" src="<?= media(); ?>/js/plugins/bootstrap-select.min.js"></script>
-<!-- Data table plugin-->
+<!-- Data table plugin -->
 <script type="text/javascript" src="<?= media(); ?>/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?= media(); ?>/js/plugins/dataTables.bootstrap.min.js"></script>
+<!-- InputMask -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.4-beta.33/bindings/inputmask.binding.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.4-beta.33/inputmask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.4-beta.33/jquery.inputmask.min.js"></script>
 
 <?php if ($data['page_name'] == "Cargo") { ?>
     <script src="<?= media(); ?>/js/functionsCargo.js"></script>
