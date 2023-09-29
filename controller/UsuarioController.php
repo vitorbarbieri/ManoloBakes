@@ -19,6 +19,7 @@ class UsuarioController extends Controller
     public function SetUsuario()
     {
         if ($_POST) {
+            $intId = intval(strClean($_POST['idUsuario']));
             $strIdentificacao = strClean($_POST['txtIdentificacao']);
             $strNome = ucwords(strClean($_POST['txtNome']));
             $strSobrenome = ucwords(strClean($_POST['txtSobrenome']));
@@ -27,12 +28,22 @@ class UsuarioController extends Controller
             $intCargo = intval(strClean($_POST['listCargo']));
             $intStatus = intval(strClean($_POST['listStatus']));
             $strSenha = strClean($_POST['txtSenha']);
-            $dateCadastro = date('Y-m-d H:i:s', );
+            $dateCadastro = date('Y-m-d H:i:s',);
 
-            $request = $this->model->insertUsuario($strIdentificacao, $strNome, $strSobrenome, $strTelefone, $strEmail, $intCargo, $intStatus, $strSenha, $dateCadastro);
+            if ($intId == 0) {
+                $request = $this->model->insertUsuario($strIdentificacao, $strNome, $strSobrenome, $strTelefone, $strEmail, $intCargo, $intStatus, $strSenha, $dateCadastro);
+                $option = 1;
+            } else {
+                $request = $this->model->updateUsuario($intId, $strIdentificacao, $strNome, $strSobrenome, $strTelefone, $strEmail, $intCargo, $intStatus, $strSenha, $dateCadastro);
+                $option = 2;
+            }
 
-            if (is_numeric($request) && $request > 0) {
-                $arrResponse = array('status' => true, 'msg' => 'Informações salvas corretamente');
+            if ($request || is_numeric($request) && $request > 0) {
+                if ($option == 1) {
+                    $arrResponse = array('status' => true, 'msg' => 'Informações salvas corretamente');
+                } else {
+                    $arrResponse = array('status' => true, 'msg' => 'Informações atualizadas corretamente');
+                }
             } else {
                 if ($request == 'exist') {
                     $arrResponse = array('status' => false, 'msg' => 'Atenção, CPF ja está sendo utilizado');

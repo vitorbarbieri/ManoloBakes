@@ -155,6 +155,44 @@ function VerUsuario(id) {
     $("#modalviewUser").modal("show");
 }
 
+function EditarUsuario(id) {
+    document.querySelector('#titleModal').innerHTML = "Atualizar Usuário";
+    document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
+    document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+    document.querySelector('#btnText').innerHTML = "<u>A</u>tualizar";
+    document.querySelector("#btnActionForm").setAttribute("accesskey", "a");
+
+    var strSenha = document.querySelector("#validaSenha").style.display = "none";
+    document.querySelector("#btnActionForm").disabled = false;
+
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url + '/Usuario/GetUsuario/' + id;
+    request.open("GET", ajaxUrl, true);
+    request.send();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var objData = JSON.parse(request.responseText);
+
+            if (objData.status) {
+                document.querySelector("#idUsuario").value = objData.data.id;
+                document.querySelector("#txtIdentificacao").value = objData.data.identificacao;
+                document.querySelector("#txtNome").value = objData.data.nome;
+                document.querySelector("#txtSobrenome").value = objData.data.sobrenome;
+                document.querySelector("#txtTelefone").value = objData.data.telefone;
+                document.querySelector("#txtEmail").value = objData.data.email;
+                document.querySelector("#listCargo").value = objData.data.idCargo;
+                document.querySelector("#listStatus").value = objData.data.status;
+                document.querySelector("#txtSenha").value = objData.data.senha;
+                document.querySelector("#txtConfirmacaoSenha").value = objData.data.senha;
+                $('#modalViewUser').modal('show');
+            } else {
+                swal("Error", objData.msg, "error");
+            }
+        }
+        $("#modalFormUsuario").modal("show");
+    }
+}
+
 function OpenModal() {
     document.querySelector('#idUsuario').value = "";
     document.querySelector('#titleModal').innerHTML = "Criar Usuário";
@@ -201,6 +239,7 @@ function Cancelar() {
     document.getElementById("txtSenha").classList.remove("is-invalid");
     document.getElementById("txtConfirmacaoSenha").classList.remove("is-invalid");
     document.querySelector("#formUsuario").reset();
+    $("#modalFormUsuario").modal("hide");
 }
 
 function MostrarSenha() {

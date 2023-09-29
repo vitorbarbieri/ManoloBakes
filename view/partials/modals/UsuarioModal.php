@@ -86,9 +86,9 @@
                                     <span id="btnText"><u>S</u>alvar</span>
                                 </button>
                                 &nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-danger" href="#" tabindex="11" accesskey="c" data-dismiss="modal" onclick="Cancelar();">
+                                <a class="btn btn-danger" href="#" tabindex="11" accesskey="a" data-dismiss="modal" onclick="Cancelar();">
                                     <i class="fa-solid fa-circle-xmark"></i>&nbsp;
-                                    <u>C</u>ancelar
+                                    C<u>a</u>ncelar
                                 </a>
                             </div>
                         </form>

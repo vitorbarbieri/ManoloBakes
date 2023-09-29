@@ -45,6 +45,29 @@ class UsuarioModel extends Mysql
 		return $return;
     }
 
+    public function updateUsuario(int $id, string $cpf, string $nome, string $sobrenome, string $tel, string $email, int $cargo, int $status, string $senha)
+	{
+        $this->intId = $id;
+        $this->strCpf = $cpf;
+        $this->strNome = $nome;
+        $this->strSobrenome = $sobrenome;
+        $this->strTelefone = $tel;
+        $this->strEmail = $email;
+        $this->strSenha = $senha;
+        $this->intCargo = $cargo;
+        $this->intStatus = $status;
+
+        $sql = "SELECT * FROM pessoa WHERE id = $this->intId";
+		$request = $this->select($sql);
+
+		if (!empty($request)) {
+			$sql = "UPDATE pessoa SET identificacao = ?, nome = ?, sobrenome = ?, telefone = ?, email = ?, senha = ?, id_cargo = ?, status = ? WHERE id = $this->intId";
+			$arrData = array($this->strCpf, $this->strNome, $this->strSobrenome, $this->strTelefone, $this->strEmail, $this->strSenha, $this->intCargo, $this->intStatus);
+			$request = $this->update($sql, $arrData);
+			return $request;
+		}
+	}
+
     public function selectUsuarios()
     {
         $sql = "SELECT p.id, p.identificacao, p.nome, p.sobrenome, p.telefone, p.email, p.senha, p.status, c.nome as cNome FROM pessoa p INNER JOIN cargo c ON p.id_cargo = c.id";
@@ -55,7 +78,7 @@ class UsuarioModel extends Mysql
     public function selectUsuario($id)
     {
         $this->intId = $id;
-        $sql = "SELECT p.id, p.identificacao, p.nome, p.sobrenome, p.telefone, p.email, p.senha, p.status, c.nome as cNome, DATE_FORMAT(p.data_criacao, '%d/%m/%Y') as dataCadastro
+        $sql = "SELECT p.id, p.identificacao, p.nome, p.sobrenome, p.telefone, p.email, p.senha, p.status, c.nome as cNome, DATE_FORMAT(p.data_criacao, '%d/%m/%Y') as dataCadastro, c.id as idCargo
                 FROM pessoa p
                 INNER JOIN cargo c ON p.id_cargo = c.id
                 WHERE p.id = $this->intId";
