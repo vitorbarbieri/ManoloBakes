@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal Criar/Editar Usuário -->
 <div class="modal fade" id="modalFormUsuario" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -92,6 +92,64 @@
                                 </a>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Ver Usuário -->
+<div class="modal fade" id="modalviewUser" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header header-primary">
+                <h5 class="modal-title" id="titleModal">Dados Usuário</h5>
+            </div>
+            <div class="modal-body">
+                <div class="tile">
+                    <div class="tile-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td width="40%">CPF:</td>
+                                    <td id="celIdentificacion"></td>
+                                </tr>
+                                <tr>
+                                    <td>Nome:</td>
+                                    <td id="celNombre"></td>
+                                </tr>
+                                <tr>
+                                    <td>Sobrenome:</td>
+                                    <td id="celApellido"></td>
+                                </tr>
+                                <tr>
+                                    <td>Telefone:</td>
+                                    <td id="celTelefono"></td>
+                                </tr>
+                                <tr>
+                                    <td>E-mail:</td>
+                                    <td id="celEmail"></td>
+                                </tr>
+                                <tr>
+                                    <td>Cargo:</td>
+                                    <td id="celTipoUsuario"></td>
+                                </tr>
+                                <tr>
+                                    <td>Status:</td>
+                                    <td id="celEstado"></td>
+                                </tr>
+                                <tr>
+                                    <td>Data de Cadastro:</td>
+                                    <td id="celFechaRegistro"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button class="btn btn-secondary" tabindex="1" accesskey="c" data-dismiss="modal">
+                            <span id="btnText">Fe<u>c</u>har</span>
+                        </button>
                     </div>
                 </div>
             </div>

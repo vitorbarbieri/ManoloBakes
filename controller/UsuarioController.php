@@ -27,8 +27,9 @@ class UsuarioController extends Controller
             $intCargo = intval(strClean($_POST['listCargo']));
             $intStatus = intval(strClean($_POST['listStatus']));
             $strSenha = strClean($_POST['txtSenha']);
+            $dateCadastro = date('Y-m-d H:i:s', );
 
-            $request = $this->model->insertUsuario($strIdentificacao, $strNome, $strSobrenome, $strTelefone, $strEmail, $intCargo, $intStatus, $strSenha);
+            $request = $this->model->insertUsuario($strIdentificacao, $strNome, $strSobrenome, $strTelefone, $strEmail, $intCargo, $intStatus, $strSenha, $dateCadastro);
 
             if (is_numeric($request) && $request > 0) {
                 $arrResponse = array('status' => true, 'msg' => 'Informações salvas corretamente');
@@ -71,6 +72,22 @@ class UsuarioController extends Controller
         }
 
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function GetUsuario($id)
+    {
+        $intId = intval(strClean($id));
+
+        if ($intId > 0) {
+            $arrData = $this->model->selectUsuario($intId);
+            if (empty($arrData)) {
+                $arrResponse = array('status' => false, 'msg' => "Usuário não existe");
+            } else {
+                $arrResponse = array('status' => true, 'data' => $arrData);
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
         die();
     }
 }

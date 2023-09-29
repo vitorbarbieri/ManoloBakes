@@ -6,7 +6,7 @@ textarea {
     color: red;
 }
 
-.headerRegister {
+.headerRegister, .header-primary {
     background: #009688;
     color: #fff;
 }

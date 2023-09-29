@@ -21,12 +21,16 @@ document.addEventListener('DOMContentLoaded', function () {
             "dataSrc": ""
         },
         "columns": [
+            { "data": "id", "width": "0%" },
             { "data": "nome", "width": "15%" },
             { "data": "sobrenome", "width": "20%" },
             { "data": "email", "width": "30%" },
             { "data": "cNome", "width": "15%" },
             { "data": "status", "width": "10%" },
             { "data": "opcao", "width": "10%" }
+        ],
+        "columnDefs": [
+            { "visible": false, "targets": 0 } // Desativar coluna de índice 0 (id)
         ],
         "resonsieve": "true",
         "bDestroy": true,
@@ -120,6 +124,36 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 }, false);
+
+function VerUsuario(id) {
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url + '/Usuario/GetUsuario/' + id;
+    request.open("GET", ajaxUrl, true);
+    request.send();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var objData = JSON.parse(request.responseText);
+
+            if (objData.status) {
+                var status = objData.data.status == 1 ? '<span class="badge badge-success">Activo</span>' : '<span class="badge badge-danger">Inactivo</span>';
+
+                document.querySelector("#celIdentificacion").innerHTML = objData.data.identificacao;
+                document.querySelector("#celNombre").innerHTML = objData.data.nome;
+                document.querySelector("#celApellido").innerHTML = objData.data.sobrenome;
+                document.querySelector("#celTelefono").innerHTML = objData.data.telefone;
+                document.querySelector("#celEmail").innerHTML = objData.data.email;
+                document.querySelector("#celTipoUsuario").innerHTML = objData.data.cNome;
+                document.querySelector("#celEstado").innerHTML = status;
+                document.querySelector("#celFechaRegistro").innerHTML = objData.data.dataCadastro;
+                $('#modalViewUser').modal('show');
+            } else {
+                swal("Error", objData.msg, "error");
+            }
+        }
+    }
+
+    $("#modalviewUser").modal("show");
+}
 
 function OpenModal() {
     document.querySelector('#idUsuario').value = "";

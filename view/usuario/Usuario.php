@@ -33,6 +33,7 @@
                         <table class="table table-hover table-bordered" id="tabelaUsuario">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Nome</th>
                                     <th>Sobrenome</th>
                                     <th>E-mail</th>

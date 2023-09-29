@@ -19,7 +19,7 @@ class UsuarioModel extends Mysql
         parent::__construct();
     }
 
-    public function insertUsuario(string $cpf, string $nome, string $sobrenome, string $tel, string $email, int $cargo, int $status, string $senha)
+    public function insertUsuario(string $cpf, string $nome, string $sobrenome, string $tel, string $email, int $cargo, int $status, string $senha, $dataCriacao)
     {
         $this->strCpf = $cpf;
         $this->strNome = $nome;
@@ -28,14 +28,15 @@ class UsuarioModel extends Mysql
         $this->strEmail = $email;
         $this->strSenha = $senha;
         $this->intCargo = $cargo;
+        $this->dateCadastro = $dataCriacao;
         $this->intStatus = $status;
 
         $sql = "SELECT * FROM pessoa WHERE identificacao = '{$this->strCpf}'";
 		$request = $this->select($sql);
 
 		if (empty($request)) {
-			$sql = "INSERT INTO pessoa (identificacao, nome, sobrenome, telefone, email, senha, id_cargo, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-			$arrData = array($this->strCpf, $this->strNome, $this->strSobrenome, $this->strTelefone, $this->strEmail, $this->strSenha, $this->intCargo, $this->intStatus);
+			$sql = "INSERT INTO pessoa (identificacao, nome, sobrenome, telefone, email, senha, id_cargo, data_criacao, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			$arrData = array($this->strCpf, $this->strNome, $this->strSobrenome, $this->strTelefone, $this->strEmail, $this->strSenha, $this->intCargo, $this->dateCadastro, $this->intStatus);
 			$request = $this->insert($sql, $arrData);
 			$return = $request;
 		} else {
@@ -48,6 +49,17 @@ class UsuarioModel extends Mysql
     {
         $sql = "SELECT p.id, p.identificacao, p.nome, p.sobrenome, p.telefone, p.email, p.senha, p.status, c.nome as cNome FROM pessoa p INNER JOIN cargo c ON p.id_cargo = c.id";
         $request = $this->select_all($sql);
+        return $request;
+    }
+
+    public function selectUsuario($id)
+    {
+        $this->intId = $id;
+        $sql = "SELECT p.id, p.identificacao, p.nome, p.sobrenome, p.telefone, p.email, p.senha, p.status, c.nome as cNome, DATE_FORMAT(p.data_criacao, '%d/%m/%Y') as dataCadastro
+                FROM pessoa p
+                INNER JOIN cargo c ON p.id_cargo = c.id
+                WHERE p.id = $this->intId";
+        $request = $this->select($sql);
         return $request;
     }
 }
