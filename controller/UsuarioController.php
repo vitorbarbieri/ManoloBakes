@@ -13,6 +13,7 @@ class UsuarioController extends Controller
         $data['page_tag'] = "Usuário - Manolo Bakes";
         $data['page_title'] = "Usuário";
         $data['page_name'] = "Usuario";
+        $data['page_functions_js'] = "functionsUsuario.js";
         $this->views->getView($this, "usuario", $data);
     }
 

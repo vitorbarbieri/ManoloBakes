@@ -13,6 +13,7 @@ class CargoController extends Controller
         $data['page_tag'] = "Cargos - Manolo Bakes";
         $data['page_title'] = "Cargos de Usuário";
         $data['page_name'] = "Cargo";
+        $data['page_functions_js'] = "functionsCargo.js";
         $this->views->getView($this, "cargo", $data);
     }
 
