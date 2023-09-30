@@ -5,6 +5,10 @@ class LoginController extends Controller
     public function __construct()
     {
         session_start();
+        if (isset($_SESSION['login'])) {
+            header('location: ' . base_url() . '/dashboard');
+        }
+        
         parent::__construct();
     }
 
@@ -26,7 +30,7 @@ class LoginController extends Controller
                 $strUsuario = strtolower(strClean($_POST['txtEmail']));
                 $strPassword = $_POST['txtPassword'];
                 $requestUser = $this->model->LoginUser($strUsuario, $strPassword);
-                
+
                 if (empty($requestUser)) {
                     $arrResponse = array('status' => false, 'msg' => "Dados informados estão incorreta");
                 } else {

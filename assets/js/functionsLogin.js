@@ -34,21 +34,26 @@ document.addEventListener('DOMContentLoaded', function () {
             var formData = new FormData(formLogin);
             request.open("POST", ajaxUrl, true);
             request.send(formData);
-            console.log(request);
-            // request.onreadystatechange = function () {
-            //     if (request.readyState == 4 && request.status == 200) {
-                    // var objData = JSON.parse(request.responseText);
-                    // if (objData.status) {
-                    //     $('#modalFormUsuario').modal("hide");
-                    //     Cancelar();
-                    //     swal("Usuário", objData.msg, "success");
-                    //     tableUsuario.api().ajax.reload(function () { });
-                    // } else {
-                    //     $('#txtIdentificacao').select();
-                    //     swal("Erro", objData.msg, "error");
-                    // }
-                // }
-            // }
+            request.onreadystatechange = function () {
+                if (request.readyState != 4) {
+                    return
+                }
+
+                if (request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
+
+                    if (objData.status) {
+                        window.location = base_url + "/dashboard";
+                    } else {
+                        swal("Atenção", objData.msg, "error");
+                        document.querySelector("#txtEmail").value = "";
+                        document.querySelector("#txtPassword").value = "";
+                        $('#txtEmail').select();
+                    }
+                } else {
+                    swal("Atenção", "Erro no processo de login", "error");
+                }
+            }
         }
     }
 }, false);
