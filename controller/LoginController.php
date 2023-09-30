@@ -52,4 +52,10 @@ class LoginController extends Controller
         }
         die();
     }
+
+    public function ResetPass()
+    {
+        dep($_POST);
+        die();
+    }
 }

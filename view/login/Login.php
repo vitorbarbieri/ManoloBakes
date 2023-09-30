@@ -28,7 +28,7 @@
                 </h3>
                 <div class="form-group">
                     <label class="control-label">Usuário</label>
-                    <input id="txtEmail" name="txtEmail" class="form-control" type="text" placeholder="Digite seu e-mail" autofocus>
+                    <input id="txtEmail" name="txtEmail" class="form-control" type="email" placeholder="Digite seu e-mail" autofocus>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Senha</label>
@@ -49,14 +49,14 @@
                     </button>
                 </div>
             </form>
-            <form class="forget-form" action="index.html">
+            <form id="formRecetPass" name="formRecetPass" class="forget-form">
                 <h3 class="login-head">
                     <i class="fa fa-lg fa-fw fa-lock"></i>
                     Esqueceu a senha?
                 </h3>
                 <div class="form-group">
                     <label class="control-label">E-mail</label>
-                    <input id="txtEmailReset" name="txtEmailReset" class="form-control" type="text" placeholder="Digite seu e-mail">
+                    <input id="txtEmailReset" name="txtEmailReset" class="form-control" type="email" placeholder="Digite seu e-mail">
                 </div>
                 <div class="form-group btn-container">
                     <button type="submit" class="btn btn-primary btn-block">

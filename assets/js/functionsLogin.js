@@ -56,4 +56,28 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
+
+    if (document.querySelector("#formRecetPass")) {
+        let formRecetPass = document.querySelector("#formRecetPass");
+        formRecetPass.onsubmit = function (e) {
+            e.preventDefault();
+
+            let strEmail = document.querySelector("#txtEmailReset").value;
+            if (strEmail == '') {
+                document.getElementById("txtEmail").classList.add("is-invalid");
+                swal("Por favor", "O campo e-mail é obrigatório", "error");
+                return false;
+            } else {
+                document.getElementById("txtEmail").classList.remove("is-invalid");
+            }
+
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url + '/Login/ResetPass';
+            var formData = new FormData(formRecetPass);
+            request.open("POST", ajaxUrl, true);
+            request.send(formData);
+            request.onreadystatechange = function () {
+            }
+        }
+    }
 }, false);
