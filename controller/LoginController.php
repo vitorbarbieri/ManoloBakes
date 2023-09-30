@@ -38,6 +38,10 @@ class LoginController extends Controller
                     if ($arrData['status'] == 1) {
                         $_SESSION['idUser'] = $arrData['id'];
                         $_SESSION['login'] = true;
+
+                        $arrData = $this->model->SessionLogin($_SESSION['idUser']);
+                        $_SESSION['userData'] = $arrData;
+
                         $arrResponse = array('status' => true, 'msg' => "ok");
                     } else {
                         $arrResponse = array('status' => false, 'msg' => "Usuário inativo");

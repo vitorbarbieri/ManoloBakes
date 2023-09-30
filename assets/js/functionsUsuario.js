@@ -127,6 +127,9 @@ document.addEventListener('DOMContentLoaded', function () {
             return false;
         }
 
+        $("#txtSenha").attr("type", "password");
+        $("#txtConfirmacaoSenha").attr("type", "password");
+
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = base_url + '/Usuario/SetUsuario';
         var formData = new FormData(formUsuario);
@@ -293,6 +296,10 @@ function Cancelar() {
         if ($(this).hasClass('is-invalid'))
             $(this).removeClass("is-invalid");
     });
+
+    $("#txtSenha").attr("type", "password");
+    $("#txtConfirmacaoSenha").attr("type", "password");
+
     document.querySelector("#formUsuario").reset();
     $("#modalFormUsuario").modal("hide");
 }
