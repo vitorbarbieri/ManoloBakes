@@ -18,21 +18,21 @@
     </section>
     <section class="login-content">
         <div class="logo">
-            <h1>Manolo Bakes</h1>
+            <h1><?= $data['page_title'] ?></h1>
         </div>
         <div class="login-box">
-            <form class="login-form" action="index.html">
+            <form class="login-form" name="formLogin" id="formLogin">
                 <h3 class="login-head">
                     <i class="fa fa-lg fa-fw fa-user"></i>
                     Iniciar Sessão
                 </h3>
                 <div class="form-group">
                     <label class="control-label">Usuário</label>
-                    <input id="txtEmail" class="form-control" type="text" placeholder="Digite seu e-mail" autofocus>
+                    <input id="txtEmail" name="txtEmail" class="form-control" type="text" placeholder="Digite seu e-mail" autofocus>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Senha</label>
-                    <input id="txtPassword" class="form-control" type="password" placeholder="Digite sua senha">
+                    <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Digite sua senha">
                 </div>
                 <div class="form-group">
                     <div class="utility">
@@ -56,7 +56,7 @@
                 </h3>
                 <div class="form-group">
                     <label class="control-label">E-mail</label>
-                    <input id="txtEmailReset" class="form-control" type="text" placeholder="Digite seu e-mail">
+                    <input id="txtEmailReset" name="txtEmailReset" class="form-control" type="text" placeholder="Digite seu e-mail">
                 </div>
                 <div class="form-group btn-container">
                     <button type="submit" class="btn btn-primary btn-block">
@@ -75,12 +75,17 @@
             </form>
         </div>
     </section>
+    <script>
+        const base_url = "<?= base_url(); ?>";
+    </script>
     <!-- Essential javascripts for application to work-->
     <script src="<?= media(); ?>/js/jquery-3.3.1.min.js"></script>
     <script src="<?= media(); ?>/js/popper.min.js"></script>
     <script src="<?= media(); ?>/js/bootstrap.min.js"></script>
     <script src="<?= media(); ?>/js/fontawesome.js"></script>
     <script src="<?= media(); ?>/js/main.js"></script>
+    <!-- Sweet alert -->
+    <script type="text/javascript" src="<?= media(); ?>/js/plugins/sweetalert.min.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="<?= media(); ?>/js/plugins/pace.min.js"></script>
 
