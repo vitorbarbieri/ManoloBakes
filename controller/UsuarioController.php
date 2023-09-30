@@ -101,4 +101,24 @@ class UsuarioController extends Controller
         }
         die();
     }
+
+    public function delUsuario()
+    {
+        $intId = intval(strClean($_POST['id']));
+
+        $request = $this->model->deleteUsuario($intId);
+
+        if ($request == "ok") {
+            $arrResponse = array('status' => true, 'msg' => 'Usuário excluído com sucesso');
+        } else {
+            if ($request == 'exist') {
+                $arrResponse = array('status' => false, 'msg' => 'Não é possível excluir, há Pedido associada ao Usuário');
+            } else {
+                $arrResponse = array('status' => false, 'msg' => 'Não foi possível excluir os dados');
+            }
+        }
+
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }

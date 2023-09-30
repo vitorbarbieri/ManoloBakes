@@ -85,4 +85,27 @@ class UsuarioModel extends Mysql
         $request = $this->select($sql);
         return $request;
     }
+
+    public function deleteUsuario($id)
+    {
+		$this->intId = $id;
+
+		$sql = "SELECT * FROM pedido WHERE id_pessoa = $this->intId";
+		$request = $this->select_all($sql);
+
+		if (empty($request)) {
+			$sql = "DELETE FROM pessoa WHERE id = $this->intId";
+			$request = $this->delete($sql); // Refer-se ao método DELETE do arquivo MySql
+			if ($request) {
+				$request = "ok";
+			} else {
+				$request = "error";
+			}
+			
+		} else {
+			$request = "exist";
+		}
+
+		return $request;
+    }
 }

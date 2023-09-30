@@ -193,6 +193,42 @@ function EditarUsuario(id) {
     }
 }
 
+function DeletarUsuario(idUser) {
+    var id = idUser;
+
+    swal({
+        title: "Eliminar Usuário",
+        text: "Realment deseja elminiar o usuário?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, eliminar",
+        cancelButtonText: "Não, cancelar",
+        closeOnConfirm: false,
+        closeOnCancel: true
+    }, function (isConfirm) {
+        if (isConfirm) {
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url + "/Usuario/delUsuario";
+            var strData = "id=" + id;
+            request.open("POST", ajaxUrl, true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send(strData);
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
+
+                    if (objData.status) {
+                        swal("Eliminar", objData.msg, "success");
+                    } else {
+                        swal("Atenção", objData.msg, "error");
+                    }
+                    tableUsuario.api().ajax.reload(function () { });
+                }
+            }
+        }
+    });
+}
+
 function OpenModal() {
     document.querySelector('#idUsuario').value = "";
     document.querySelector('#titleModal').innerHTML = "Criar Usuário";
