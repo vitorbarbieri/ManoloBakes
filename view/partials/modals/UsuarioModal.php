@@ -18,45 +18,45 @@
                                 <div class="form-group col-md-6">
                                     <label class="control-label" for="txtIdentificacao">CPF</label>&nbsp;
                                     <label class="cor-azul">*</label>
-                                    <input class="form-control" id="txtIdentificacao" name="txtIdentificacao" tabindex="1" type="text" placeholder="Digite seu CPF" onBlur="AlterarCSS();" autofocus>
+                                    <input class="form-control valid" id="txtIdentificacao" name="txtIdentificacao" tabindex="1" type="text" placeholder="Digite seu CPF" onBlur="AlterarCSS();" autofocus>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label class="control-label" for="txtNome">Nome</label>&nbsp;
                                     <label class="cor-azul">*</label>
-                                    <input class="form-control" id="txtNome" name="txtNome" tabindex="2" type="text" placeholder="Digite seu Nome" onBlur="AlterarCSS();">
+                                    <input class="form-control valid validText" id="txtNome" name="txtNome" tabindex="2" type="text" placeholder="Digite seu Nome" onBlur="AlterarCSS();">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label" for="txtSobrenome">Sobrenome</label>&nbsp;
                                     <label class="cor-azul">*</label>
-                                    <input class="form-control" id="txtSobrenome" name="txtSobrenome" tabindex="3" type="text" placeholder="Digite seu Sobrenome" onBlur="AlterarCSS();">
+                                    <input class="form-control valid validText" id="txtSobrenome" name="txtSobrenome" tabindex="3" type="text" placeholder="Digite seu Sobrenome" onBlur="AlterarCSS();">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label class="control-label" for="txtTelefone">Telefone</label>&nbsp;
                                     <label class="cor-azul">*</label>
-                                    <input class="form-control" id="txtTelefone" name="txtTelefone" tabindex="4" type="text" placeholder="Digite seu Telefone" onBlur="AlterarCSS();">
+                                    <input class="form-control valid" id="txtTelefone" name="txtTelefone" tabindex="4" type="text" placeholder="Digite seu Telefone" onBlur="AlterarCSS();">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label" for="txtEmail">Email</label>&nbsp;
                                     <label class="cor-azul">*</label>
-                                    <input class="form-control" id="txtEmail" name="txtEmail" tabindex="5" type="text" placeholder="Digite seu E-mail" onBlur="AlterarCSS();">
+                                    <input class="form-control valid validEmail" id="txtEmail" name="txtEmail" tabindex="5" type="text" placeholder="Digite seu E-mail" onBlur="AlterarCSS();">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Cargo</label>&nbsp;
                                     <label class="cor-azul">*</label>
-                                    <select class="form-control" id="listCargo" name="listCargo" tabindex="6" onchange="AlterarCSS();">
+                                    <select class="form-control valid" id="listCargo" name="listCargo" tabindex="6" onchange="AlterarCSS();">
                                         <option value="0">-- Selecionar --</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Status</label>&nbsp;
                                     <label class="cor-azul">*</label>
-                                    <select class="form-control" id="listStatus" name="listStatus" tabindex="7" onchange="AlterarCSS();">
+                                    <select class="form-control valid" id="listStatus" name="listStatus" tabindex="7" onchange="AlterarCSS();">
                                         <option value="0">-- Selecionar --</option>
                                         <option value="1">Ativo</option>
                                         <option value="2">Inativo</option>
@@ -67,13 +67,13 @@
                                 <div class="form-group col-md-6">
                                     <label class="control-label" for="txtSenha">Senha</label>&nbsp;
                                     <label class="cor-azul">*</label>
-                                    <input class="form-control" id="txtSenha" name="txtSenha" tabindex="8" type="password" placeholder="Digite sua Senha" onBlur="AlterarCSS();">
+                                    <input class="form-control valid" id="txtSenha" name="txtSenha" tabindex="8" type="password" placeholder="Digite sua Senha" onBlur="AlterarCSS();">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label" for="txtConfirmacaoSenha">Confirmação Senha</label>&nbsp;
                                     <label class="cor-azul">*</label>
                                     <div style="display: flex; align-items: center;">
-                                        <input class="form-control" id="txtConfirmacaoSenha" name="txtConfirmacaoSenha" tabindex="9" type="password" placeholder="Digite sua Confirmação Senha" onBlur="ValidaSenha();">
+                                        <input class="form-control valid" id="txtConfirmacaoSenha" name="txtConfirmacaoSenha" tabindex="9" type="password" placeholder="Digite sua Confirmação Senha" onBlur="ValidaSenha();">
                                         &nbsp;
                                         <i class="fa-solid fa-eye imgSenha" onclick="MostrarSenha();"></i>
                                     </div>

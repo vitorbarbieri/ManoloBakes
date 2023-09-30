@@ -7,7 +7,6 @@
 <script src="<?= media() ?>/js/popper.min.js"></script>
 <script src="<?= media() ?>/js/bootstrap.min.js"></script>
 <script src="<?= media() ?>/js/main.js"></script>
-<script src="<?= media() ?>/js/functionsAdmin.js"></script>
 <!-- Font Awesome -->
 <script src="<?= media(); ?>/js/fontawesome.js"></script>
 <!-- The javascript plugin to display page loading on top-->
@@ -29,9 +28,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.4-beta.33/inputmask.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.4-beta.33/jquery.inputmask.min.js"></script>
 
+<script src="<?= media(); ?>/js/functionsAdmin.js"></script>
+
 <?php if ($data['page_name'] == "Cargo") { ?>
     <script src="<?= media(); ?>/js/functionsCargo.js"></script>
 <?php } ?>
+
 <?php if ($data['page_name'] == "Usuario") { ?>
     <script src="<?= media(); ?>/js/functionsUsuario.js"></script>
 <?php } ?>

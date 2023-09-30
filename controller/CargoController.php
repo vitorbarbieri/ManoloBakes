@@ -68,7 +68,9 @@ class CargoController extends Controller
         $arrData = $this->model->selectCargos();
         if (count($arrData) > 0) {
             for ($i = 0; $i < count($arrData); $i++) {
-                $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '">' . $arrData[$i]['nome'] . '</option>';
+                if ($arrData[$i]['status'] == 1) { // Ativo
+                    $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '">' . $arrData[$i]['nome'] . '</option>';
+                }
             }
         }
         echo $htmlOptions;

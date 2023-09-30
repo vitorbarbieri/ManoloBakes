@@ -289,15 +289,10 @@ function CarregarCargosUsuario() {
 }
 
 function Cancelar() {
-    document.getElementById("txtIdentificacao").classList.remove("is-invalid");
-    document.getElementById("txtNome").classList.remove("is-invalid");
-    document.getElementById("txtSobrenome").classList.remove("is-invalid");
-    document.getElementById("txtTelefone").classList.remove("is-invalid");
-    document.getElementById("txtEmail").classList.remove("is-invalid");
-    document.getElementById("listCargo").classList.remove("is-invalid");
-    document.getElementById("listStatus").classList.remove("is-invalid");
-    document.getElementById("txtSenha").classList.remove("is-invalid");
-    document.getElementById("txtConfirmacaoSenha").classList.remove("is-invalid");
+    $(".valid").each(function () {
+        if ($(this).hasClass('is-invalid'))
+            $(this).removeClass("is-invalid");
+    });
     document.querySelector("#formUsuario").reset();
     $("#modalFormUsuario").modal("hide");
 }
