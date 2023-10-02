@@ -2,10 +2,6 @@
 <?= navAdmin($data); ?>
 
 <main class="app-content">
-    <?php
-    dep($_SESSION['permissoes']);
-    dep($_SESSION['permissoesModulos']);
-    ?>
     <div class="app-title">
         <div>
             <h1>
