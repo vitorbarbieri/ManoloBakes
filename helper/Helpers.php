@@ -68,6 +68,24 @@ function sendEmail($data, $template)
     return $send;
 }
 
+// Extrair as permissoes do modulo
+function GetPermissoes(int $idModulo)
+{
+    require_once("model/PermissaoModel.php");
+    $objPermissoes = new PermissaoModel();
+    $idCargo = $_SESSION['userData']['id_cargo'];
+    $arrPermissoes = $objPermissoes->PermissoesModulo($idCargo);
+    $permissoes = "";
+    $permissoesModulos = "";
+
+    if(count($arrPermissoes) > 0 ){
+        $permissoes = $arrPermissoes;
+        $permissoesModulos = isset($arrPermissoes[$idModulo]) ? $arrPermissoes[$idModulo] : "";
+    }
+
+    $_SESSION['permissoes'] = $permissoes;
+    $_SESSION['permissoesModulos'] = $permissoesModulos;
+}
 
 // Limpa string
 function strClean($strCadena)

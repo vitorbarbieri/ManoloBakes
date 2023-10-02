@@ -70,4 +70,23 @@ class PermissaoModel extends Mysql
 
 		return $request;
     }
+
+    public function PermissoesModulo($id)
+    {
+        $this->intIdCargo = $id;
+        $sql = "SELECT p.id_cargo,
+                       p.id_modulo,
+                       m.nome,
+                       p.alterar,
+                       p.consultar
+                FROM permissao p
+                INNER JOIN modulo m ON p.id_modulo = m.id
+                WHERE p.id_cargo = $this->intIdCargo";
+        $request = $this->select_all($sql);
+        $arrPermissoes = array();
+        for ($i=0; $i < count($request); $i++) { 
+            $arrPermissoes[$request[$i]['id_modulo']] = $request[$i];
+        }
+        return $arrPermissoes;
+    }
 }

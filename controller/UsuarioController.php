@@ -4,12 +4,14 @@ class UsuarioController extends Controller
 {
     public function __construct()
     {
-        parent::__construct();
-
         session_start();
         if (!$_SESSION['login']) {
             header('location: ' . base_url() . '/login');
         }
+        
+        parent::__construct();
+
+        GetPermissoes(2);
     }
 
     public function usuario()

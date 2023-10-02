@@ -10,6 +10,8 @@ class DashboardController extends Controller
         if (!$_SESSION['login']) {
             header('location: ' . base_url() . '/login');
         }
+
+        GetPermissoes(1); // View dashboard
     }
 
     public function dashboard()

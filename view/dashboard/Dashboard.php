@@ -2,6 +2,10 @@
 <?= navAdmin($data); ?>
 
 <main class="app-content">
+    <?php
+    dep($_SESSION['permissoes']);
+    dep($_SESSION['permissoesModulos']);
+    ?>
     <div class="app-title">
         <div>
             <h1>
@@ -24,6 +28,7 @@
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">Create a beautiful dashboard</div>
+                <?php dep($_SESSION['userData']); ?>
             </div>
         </div>
     </div>

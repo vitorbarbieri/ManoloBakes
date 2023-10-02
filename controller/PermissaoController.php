@@ -28,7 +28,8 @@ class PermissaoController extends Controller
                 }
             } else {
                 for ($i = 0; $i < count(($arrModulos)); $i++) {
-                    if (isset($arrPermissao[$i])) {
+                    $arrPermissao = array('consultar' => 0, 'alterar' => 0);
+                    if (isset($arrPermissoesCargo[$i])) {
                         $arrPermissao = array(
                             'consultar' => $arrPermissoesCargo[$i]['consultar'],
                             'alterar' => $arrPermissoesCargo[$i]['alterar']
