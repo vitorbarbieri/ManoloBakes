@@ -55,7 +55,33 @@ class LoginController extends Controller
 
     public function ResetPass()
     {
-        dep($_POST);
+        if ($_POST) {
+            if (empty($_POST['txtEmailReset'])) {
+                $arrResponse = array('status' => false, 'msg' => "Erro de dados");
+            } else {
+                $token = token();
+                $strUsuario = strtolower(strClean($_POST['txtEmailReset']));
+                $arrData = $this->model->GetUserEmail($strUsuario);
+
+                if (empty($arrData)) {
+                    $arrResponse = array('status' => false, 'msg' => "Usuário não existe");
+                } else {
+                    $id = $arrData['id'];
+                    $nomeCompleto = $arrData['nome'] .' ' .  $arrData['sobrenome'];
+
+                    $url_recovery = base_url() . "/Login/ConfirmUser/" . $strUsuario . "/" . $token;
+
+                    $requestUpdate = $this->model->SetTokenUser($id, $token);
+
+                    if ($requestUpdate) {
+                        $arrResponse = array('status' => true, 'msg' => "Foi enviado um e-mail a sua conta para trocar de senha");
+                    } else {
+                        $arrResponse = array('status' => false, 'msg' => "Não foi possível realziar o processo, tente mais tarde");
+                    }
+                }
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
         die();
     }
 }
