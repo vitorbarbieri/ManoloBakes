@@ -28,13 +28,15 @@ class PermissaoController extends Controller
                 }
             } else {
                 for ($i = 0; $i < count(($arrModulos)); $i++) {
-                    $arrPermissao = array(
-                        'consultar' => $arrPermissoesCargo[$i]['consultar'],
-                        'alterar' => $arrPermissoesCargo[$i]['alterar']
-                    );
-                    if ($arrModulos[$i]['id'] == $arrPermissoesCargo[$i]['id_modulo']) {
-                        $arrModulos[$i]['permissao'] = $arrPermissao;
+                    if (isset($arrPermissao[$i])) {
+                        $arrPermissao = array(
+                            'consultar' => $arrPermissoesCargo[$i]['consultar'],
+                            'alterar' => $arrPermissoesCargo[$i]['alterar']
+                        );
                     }
+                    // if ($arrModulos[$i]['id'] == $arrPermissoesCargo[$i]['id_modulo']) {
+                        $arrModulos[$i]['permissao'] = $arrPermissao;
+                    // }
                 }
             }
             $arrPermissaoCargo['modulos'] = $arrModulos;

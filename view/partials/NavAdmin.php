@@ -34,12 +34,6 @@
                         Cargos
                     </a>
                 </li>
-                <li>
-                    <a class="treeview-item" href="<?= base_url(); ?>/permissao">
-                        <i class="icon fa fa-circle-o"></i>
-                        Permissões
-                    </a>
-                </li>
             </ul>
         </li>
         <li>
