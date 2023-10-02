@@ -68,4 +68,14 @@ class LoginModel extends Mysql
         $request = $this->update($sql, $arrData);
         return $request;
     }
+
+    public function GetUsuario($email, $token)
+    {
+        $this->login = $email;
+        $this->token = $token;
+
+        $sql = "SELECT id FROM pessoa WHERE email = '$this->login' AND token = '$this->token' AND status = 1";
+        $request = $this->select($sql);
+        return $request;
+    }
 }

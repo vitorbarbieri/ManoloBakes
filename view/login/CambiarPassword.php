@@ -39,14 +39,6 @@
                         Reiniciar
                     </button>
                 </div>
-                <div class="form-group mt-3">
-                    <p class="semibold-text mb-0">
-                        <a href="<?= base_url() ?>/login">
-                            <i class="fa-solid fa-angle-left"></i>&numsp;
-                            Voltar ara Login
-                        </a>
-                    </p>
-                </div>
             </form>
         </div>
     </section>

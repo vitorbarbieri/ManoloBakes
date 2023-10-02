@@ -8,7 +8,7 @@ class LoginController extends Controller
         if (isset($_SESSION['login'])) {
             header('location: ' . base_url() . '/dashboard');
         }
-        
+
         parent::__construct();
     }
 
@@ -67,7 +67,7 @@ class LoginController extends Controller
                     $arrResponse = array('status' => false, 'msg' => "Usuário não existe");
                 } else {
                     $id = $arrData['id'];
-                    $nomeCompleto = $arrData['nome'] .' ' .  $arrData['sobrenome'];
+                    $nomeCompleto = $arrData['nome'] . ' ' .  $arrData['sobrenome'];
 
                     $url_recovery = base_url() . "/Login/ConfirmUser/" . $strUsuario . "/" . $token;
 
@@ -87,11 +87,26 @@ class LoginController extends Controller
 
     public function ConfirmUser(string $params)
     {
-        $data['page_tag'] = "Trocar senha";
-        $data['page_title'] = "Trocar Senha";
-        $data['page_name'] = "trocar_senha";
-        $data['id'] = 1;
+        if (empty($params)) {
+            header('location: ' . base_url());
+        } else {
+            $arrParams = explode(',', $params);
+            $email = strClean($arrParams[0]);
+            $token = strClean($arrParams[1]);
 
-        $this->views->getView($this, "CambiarPassword", $data);
+            $arrResponse = $this->model->GetUsuario($email, $token);
+
+            if (empty($arrResponse)) {
+                header('location: ' . base_url());
+            } else {
+                $data['page_tag'] = "Trocar senha";
+                $data['page_title'] = "Trocar Senha";
+                $data['page_name'] = "trocar_senha";
+                $data['id'] = $arrResponse['id'];
+        
+                $this->views->getView($this, "CambiarPassword", $data);
+            }
+        }
+        die();
     }
 }
