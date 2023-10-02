@@ -49,6 +49,26 @@ function getModal(string $nameModal, $data)
     require_once($view_modal);
 }
 
+// Envio de e-mail
+function sendEmail($data, $template)
+{
+    $assunto = $data['assunto'];
+    $emailDestino = $data['email'];
+    $empresa = NOME_REMETENTE;
+    $remetente = EMAIL_REMETENTE;
+    //ENVIO DE CORREO
+    $de = "MIME-Version: 1.0\r\n";
+    $de .= "Content-type: text/html; charset=UTF-8\r\n";
+    $de .= "From: {$empresa} <{$remetente}>\r\n";
+    ob_start();
+    require_once("view/partials/email/" . $template . ".php");
+    $menssagem = ob_get_clean();
+    // $send = mail($emailDestino, $assunto, $menssagem, $de);
+    $send = true;
+    return $send;
+}
+
+
 // Limpa string
 function strClean($strCadena)
 {

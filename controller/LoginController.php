@@ -73,8 +73,20 @@ class LoginController extends Controller
 
                     $requestUpdate = $this->model->SetTokenUser($id, $token);
 
+                    $dataUsuario = array(
+                        'nomeUsusario' => $strUsuario,
+                        'email' => $strUsuario,
+                        'assunto' => 'Recuperar conta - ' . NOME_REMETENTE,
+                        'url_recovery' => $url_recovery
+                    );
                     if ($requestUpdate) {
-                        $arrResponse = array('status' => true, 'msg' => "Foi enviado um e-mail a sua conta para trocar de senha");
+                        $sendEmail = sendEmail($dataUsuario, 'email_cambioPassword');
+
+                        if ($sendEmail) {
+                            $arrResponse = array('status' => true, 'msg' => "Foi enviado um e-mail a sua conta para trocar de senha");
+                        } else {
+                            $arrResponse = array('status' => false, 'msg' => "Não foi possível enviar o e-mail, tente mais tarde");
+                        }
                     } else {
                         $arrResponse = array('status' => false, 'msg' => "Não foi possível realziar o processo, tente mais tarde");
                     }
@@ -138,7 +150,7 @@ class LoginController extends Controller
                             $arrResponse = array('status' => true, 'msg' => 'Senha atualziada com sucesso');
                         } else {
                             $arrResponse = array('status' => false, 'msg' => 'Não foi possível atualizar a senha, tente mais tarde');
-                        }       
+                        }
                     }
                 }
             }

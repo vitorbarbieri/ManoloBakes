@@ -19,3 +19,9 @@ const SPM = ".";
 
 // Símbolo da moeda
 const SMONEY = "R$";
+
+// Dados envio de e-mail
+const NOME_REMETENTE = "Manolo Bakes";
+const EMAIL_REMETENTE = "no-reply@abelosh.com";
+const NOME_EMPRESA = "Manolo Bakes";
+const WEB_EMPRESA = "www.abelosh.com";
