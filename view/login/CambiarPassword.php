@@ -21,7 +21,7 @@
             <h1><?= $data['page_title'] ?></h1>
         </div>
         <div class="login-box flipped">
-            <form id="formRecetPass" name="formRecetPass" class="forget-form">
+            <form id="formTrocarPass" name="formTrocarPass" class="forget-form">
                 <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $data['id']; ?>">
                 <h3 class="login-head">
                     <i class="fa fa-key"></i>
