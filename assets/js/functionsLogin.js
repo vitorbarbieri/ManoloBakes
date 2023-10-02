@@ -4,6 +4,8 @@ $('.login-content [data-toggle="flip"]').click(function () {
     return false;
 });
 
+var divLoading = document.querySelector("#divLoading");
+
 document.addEventListener('DOMContentLoaded', function () {
     if (document.querySelector("#formLogin")) {
         let formLogin = document.querySelector("#formLogin");
@@ -29,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 return false;
             }
 
+            divLoading.style.display = "flex";
+
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             var ajaxUrl = base_url + '/Login/LoginUser';
             var formData = new FormData(formLogin);
@@ -53,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     swal("Atenção", "Erro no processo de login", "error");
                 }
+                divLoading.style.display = "none";
+                return false;
             }
         }
     }
@@ -70,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 document.getElementById("txtEmail").classList.remove("is-invalid");
             }
-
+            
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             var ajaxUrl = base_url + '/Login/ResetPass';
             var formData = new FormData(formRecetPass);

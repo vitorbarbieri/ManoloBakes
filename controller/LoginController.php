@@ -48,6 +48,7 @@ class LoginController extends Controller
                     }
                 }
             }
+            sleep(1.5);
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
         die();

@@ -6,7 +6,8 @@ textarea {
     color: red;
 }
 
-.headerRegister, .header-primary {
+.headerRegister,
+.header-primary {
     background: #009688;
     color: #fff;
 }
@@ -18,4 +19,23 @@ textarea {
 
 .imgSenha:hover {
     cursor: pointer;
+}
+
+/*Estilos login*/
+#divLoading {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(254, 254, 255, .65);
+    z-index: 1;
+    display: none;
+}
+
+#divLoading img {
+    width: 50px;
+    height: 50px;
 }
