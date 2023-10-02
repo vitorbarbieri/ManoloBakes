@@ -84,4 +84,14 @@ class LoginController extends Controller
         }
         die();
     }
+
+    public function ConfirmUser(string $params)
+    {
+        $data['page_tag'] = "Trocar senha";
+        $data['page_title'] = "Trocar Senha";
+        $data['page_name'] = "trocar_senha";
+        $data['id'] = 1;
+
+        $this->views->getView($this, "CambiarPassword", $data);
+    }
 }
