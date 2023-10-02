@@ -102,6 +102,8 @@ class LoginController extends Controller
                 $data['page_tag'] = "Trocar senha";
                 $data['page_title'] = "Trocar Senha";
                 $data['page_name'] = "trocar_senha";
+                $data['email'] = $email;
+                $data['token'] = $token;
                 $data['page_functions_js'] = "functionsLogin.js";
                 $data['id'] = $arrResponse['id'];
 
@@ -114,8 +116,34 @@ class LoginController extends Controller
     public function SetPassword()
     {
         if ($_POST) {
-            dep($_POST);
+            if (empty("idUsuario") || empty("txtPassword") || empty("txtPasswordConfirm") || empty("txtEmail") || empty("txtToken")) {
+                $arrResponse = array('status' => false, 'msg' => 'Erro de dados');
+            } else {
+                $intIdPessoa = intval($_POST['idUsuario']);
+                $strPassword = strClean($_POST['txtPassword']);
+                $strPasswordConfirm = strClean($_POST['txtPasswordConfirm']);
+                $strEmail = strClean($_POST['txtEmail']);
+                $strToken = strClean($_POST['txtToken']);
+
+                if ($strPassword != $strPasswordConfirm) {
+                    $arrResponse = array('status' => false, 'msg' => 'As senhas não são iguais');
+                } else {
+                    $arrResponse = $this->model->GetUsuario($strEmail, $strToken);
+                    if (empty($arrResponse)) {
+                        $arrResponse = array('status' => false, 'msg' => 'Erro de dados');
+                    } else {
+                        $requestPass = $this->model->InsertPassword($intIdPessoa, $strPassword);
+
+                        if ($requestPass) {
+                            $arrResponse = array('status' => true, 'msg' => 'Senha atualziada com sucesso');
+                        } else {
+                            $arrResponse = array('status' => false, 'msg' => 'Não foi possível atualizar a senha, tente mais tarde');
+                        }       
+                    }
+                }
+            }
         }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 }

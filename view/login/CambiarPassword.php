@@ -23,6 +23,8 @@
         <div class="login-box flipped">
             <form id="formTrocarPass" name="formTrocarPass" class="forget-form">
                 <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $data['id']; ?>">
+                <input type="hidden" id="txtEmail" name="txtEmail" value="<?= $data['email']; ?>">
+                <input type="hidden" id="txtToken" name="txtToken" value="<?= $data['token']; ?>">
                 <h3 class="login-head">
                     <i class="fa fa-key"></i>
                     Trocar Senha

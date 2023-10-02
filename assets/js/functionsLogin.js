@@ -143,23 +143,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (request.status == 200) {
                     var objData = JSON.parse(request.responseText);
 
-                //     if (objData.status) {
-                //         swal({
-                //             title: "",
-                //             text: objData.msg,
-                //             type: "success",
-                //             confirmButtonText: "OK",
-                //             closeOnConfirm: false,
-                //         }, function (isConfirm) {
-                //             if (isConfirm) {
-                //                 window.location = base_url;
-                //             }
-                //         });
-                //     } else {
-                //         swal("Atenção", objData.msg, "error");
-                //     }
-                // } else {
-                //     swal("Atenção", "Erro no processo", "error");
+                    if (objData.status) {
+                        swal({
+                            title: "",
+                            text: objData.msg,
+                            type: "success",
+                            confirmButtonText: "Iniciar sessão",
+                            closeOnConfirm: false,
+                        }, function (isConfirm) {
+                            if (isConfirm) {
+                                window.location = base_url + "/login";
+                            }
+                        });
+                    } else {
+                        swal("Atenção", objData.msg, "error");
+                    }
+                } else {
+                    swal("Atenção", "Erro no processo", "error");
                 }
             }
         }
