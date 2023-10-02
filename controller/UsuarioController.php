@@ -16,6 +16,11 @@ class UsuarioController extends Controller
 
     public function usuario()
     {
+        // Não usar no construtor, pois caso algum método da classe seja utilizado em outra página, não tera acesso
+        if (empty($_SESSION['permissoesModulos']['consultar'])) {
+            header('location: ' . base_url() . "/dashboard");
+        }
+
         $data['page_id'] = 4;
         $data['page_tag'] = "Usuário - Manolo Bakes";
         $data['page_title'] = "Usuário";

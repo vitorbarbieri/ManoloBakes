@@ -10,10 +10,17 @@ class CargoController extends Controller
         if (!$_SESSION['login']) {
             header('location: ' . base_url() . '/login');
         }
+
+        GetPermissoes(2);
     }
 
     public function cargo()
     {
+        // Não usar no construtor, pois caso algum método da classe seja utilizado em outra página, não tera acesso
+        if (empty($_SESSION['permissoesModulos']['consultar'])) {
+            header('location: ' . base_url() . "/dashboard");
+        }
+
         $data['page_id'] = 3;
         $data['page_tag'] = "Cargos - Manolo Bakes";
         $data['page_title'] = "Cargos de Usuário";
@@ -33,7 +40,8 @@ class CargoController extends Controller
                 $arrData[$i]['status'] = '<span class="badge badge-danger">Inativo</span>';
             }
 
-            $arrData[$i]['opcao'] = '
+            if ($_SESSION['permissoesModulos']['alterar']) {
+                $arrData[$i]['opcao'] = '
                 <div class="text-center">
                     <button class="btn btn-secondary btn-sm" onClick="PermissaoCargo(' . $arrData[$i]['id'] . ')" title="Permissão" type="button">
                         <i class="fa-solid fa-key"></i>
@@ -46,6 +54,10 @@ class CargoController extends Controller
                     </button>
                 </div>
             ';
+            } else {
+                $arrData[$i]['opcao'] = "";
+            }
+
         }
 
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);

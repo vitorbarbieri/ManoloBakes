@@ -9,10 +9,12 @@
             <h1>
                 <i class="fa fa-dashboard"></i>&nbsp;
                 <?= $data['page_title'] ?>&numsp;
-                <button class="btn btn-primary" type="button" onclick="openModal();">
-                    <i class="fa-solid fa-circle-plus"></i>&nbsp;
-                    Novo
-                </button>
+                <?php if ($_SESSION['permissoesModulos']['alterar']) { ?>
+                    <button class="btn btn-primary" type="button" onclick="openModal();">
+                        <i class="fa-solid fa-circle-plus"></i>&nbsp;
+                        Novo
+                    </button>
+                <?php } ?>
             </h1>
         </div>
         <ul class="app-breadcrumb breadcrumb">
