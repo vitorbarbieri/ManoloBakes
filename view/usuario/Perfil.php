@@ -1,5 +1,6 @@
 <?= headerAdmin($data); ?>
 <?= navAdmin($data); ?>
+<?php getModal("PerfilModal", $data); ?>
 
 <main class="app-content">
     <div class="row user">
@@ -67,7 +68,7 @@
                             <div class="row mb-4">
                                 <div class="col-md-6">
                                     <label>Identificacao Tributária</label>
-                                    <input class="form-control" type="text" id="txtIdentificacao" name="txtIdentificacao" value="<?= $_SESSION['userData']['identificacao']; ?>">
+                                    <input class="form-control" type="text" id="txtNit" name="txtNit" value="<?= $_SESSION['userData']['identificacao']; ?>">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Nome Fiscal</label>

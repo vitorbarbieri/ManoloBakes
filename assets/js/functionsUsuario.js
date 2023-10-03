@@ -62,90 +62,92 @@ document.addEventListener('DOMContentLoaded', function () {
         "order": [[1, "asc"]]
     });
 
-    // Inserir novo Usuário
-    var formUsuario = document.querySelector("#formUsuario");
-    formUsuario.onsubmit = function (e) {
-        e.preventDefault();
+    if (document.querySelector("#formUsuario")) {
+        // Inserir novo Usuário
+        var formUsuario = document.querySelector("#formUsuario");
+        formUsuario.onsubmit = function (e) {
+            e.preventDefault();
 
-        var strIdentificacao = document.querySelector("#txtIdentificacao").value;
-        var strNome = document.querySelector("#txtNome").value;
-        var strSobrenome = document.querySelector("#txtSobrenome").value;
-        var strTelefone = document.querySelector("#txtTelefone").value;
-        var strEmail = document.querySelector("#txtEmail").value;
-        var intCargo = document.querySelector("#listCargo").value;
-        var intStatus = document.querySelector("#listStatus").value;
-        var strSenha = document.querySelector("#txtSenha").value;
-        var strConfirmacaoSenha = document.querySelector("#txtConfirmacaoSenha").value;
+            var strIdentificacao = document.querySelector("#txtIdentificacao").value;
+            var strNome = document.querySelector("#txtNome").value;
+            var strSobrenome = document.querySelector("#txtSobrenome").value;
+            var strTelefone = document.querySelector("#txtTelefone").value;
+            var strEmail = document.querySelector("#txtEmail").value;
+            var intCargo = document.querySelector("#listCargo").value;
+            var intStatus = document.querySelector("#listStatus").value;
+            var strSenha = document.querySelector("#txtSenha").value;
+            var strConfirmacaoSenha = document.querySelector("#txtConfirmacaoSenha").value;
 
-        if (strIdentificacao == '') {
-            document.getElementById("txtIdentificacao").classList.add("is-invalid");
-        } else {
-            document.getElementById("txtIdentificacao").classList.remove("is-invalid");
-        }
-        if (strNome == '') {
-            document.getElementById("txtNome").classList.add("is-invalid");
-        } else {
-            document.getElementById("txtNome").classList.remove("is-invalid");
-        }
-        if (strSobrenome == '') {
-            document.getElementById("txtSobrenome").classList.add("is-invalid");
-        } else {
-            document.getElementById("txtSobrenome").classList.remove("is-invalid");
-        }
-        if (strTelefone == '') {
-            document.getElementById("txtTelefone").classList.add("is-invalid");
-        } else {
-            document.getElementById("txtTelefone").classList.remove("is-invalid");
-        }
-        if (strEmail == '') {
-            document.getElementById("txtEmail").classList.add("is-invalid");
-        } else {
-            document.getElementById("txtEmail").classList.remove("is-invalid");
-        }
-        if (intCargo == 0) {
-            document.getElementById("listCargo").classList.add("is-invalid");
-        } else {
-            document.getElementById("listCargo").classList.remove("is-invalid");
-        }
-        if (intStatus == 0) {
-            document.getElementById("listStatus").classList.add("is-invalid");
-        } else {
-            document.getElementById("listStatus").classList.remove("is-invalid");
-        }
-        if (strSenha == '') {
-            document.getElementById("txtSenha").classList.add("is-invalid");
-        } else {
-            document.getElementById("txtSenha").classList.remove("is-invalid");
-        }
-        if (strConfirmacaoSenha == '') {
-            document.getElementById("txtConfirmacaoSenha").classList.add("is-invalid");
-        } else {
-            document.getElementById("txtConfirmacaoSenha").classList.remove("is-invalid");
-        }
-        if (strIdentificacao = '' || strNome == '' || strSobrenome == '' || strTelefone == '' || strEmail == '' || intCargo == 0 || intStatus == 0 || strSenha == '' || strConfirmacaoSenha == '') {
-            swal("Atenção", "Todos os campos são obrigatórios!", "error");
-            return false;
-        }
+            if (strIdentificacao == '') {
+                document.getElementById("txtIdentificacao").classList.add("is-invalid");
+            } else {
+                document.getElementById("txtIdentificacao").classList.remove("is-invalid");
+            }
+            if (strNome == '') {
+                document.getElementById("txtNome").classList.add("is-invalid");
+            } else {
+                document.getElementById("txtNome").classList.remove("is-invalid");
+            }
+            if (strSobrenome == '') {
+                document.getElementById("txtSobrenome").classList.add("is-invalid");
+            } else {
+                document.getElementById("txtSobrenome").classList.remove("is-invalid");
+            }
+            if (strTelefone == '') {
+                document.getElementById("txtTelefone").classList.add("is-invalid");
+            } else {
+                document.getElementById("txtTelefone").classList.remove("is-invalid");
+            }
+            if (strEmail == '') {
+                document.getElementById("txtEmail").classList.add("is-invalid");
+            } else {
+                document.getElementById("txtEmail").classList.remove("is-invalid");
+            }
+            if (intCargo == 0) {
+                document.getElementById("listCargo").classList.add("is-invalid");
+            } else {
+                document.getElementById("listCargo").classList.remove("is-invalid");
+            }
+            if (intStatus == 0) {
+                document.getElementById("listStatus").classList.add("is-invalid");
+            } else {
+                document.getElementById("listStatus").classList.remove("is-invalid");
+            }
+            if (strSenha == '') {
+                document.getElementById("txtSenha").classList.add("is-invalid");
+            } else {
+                document.getElementById("txtSenha").classList.remove("is-invalid");
+            }
+            if (strConfirmacaoSenha == '') {
+                document.getElementById("txtConfirmacaoSenha").classList.add("is-invalid");
+            } else {
+                document.getElementById("txtConfirmacaoSenha").classList.remove("is-invalid");
+            }
+            if (strIdentificacao = '' || strNome == '' || strSobrenome == '' || strTelefone == '' || strEmail == '' || intCargo == 0 || intStatus == 0 || strSenha == '' || strConfirmacaoSenha == '') {
+                swal("Atenção", "Todos os campos são obrigatórios!", "error");
+                return false;
+            }
 
-        $("#txtSenha").attr("type", "password");
-        $("#txtConfirmacaoSenha").attr("type", "password");
+            $("#txtSenha").attr("type", "password");
+            $("#txtConfirmacaoSenha").attr("type", "password");
 
-        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        var ajaxUrl = base_url + '/Usuario/SetUsuario';
-        var formData = new FormData(formUsuario);
-        request.open("POST", ajaxUrl, true);
-        request.send(formData);
-        request.onreadystatechange = function () {
-            if (request.readyState == 4 && request.status == 200) {
-                var objData = JSON.parse(request.responseText);
-                if (objData.status) {
-                    $('#modalFormUsuario').modal("hide");
-                    Cancelar();
-                    swal("Usuário", objData.msg, "success");
-                    tableUsuario.api().ajax.reload(function () { });
-                } else {
-                    $('#txtIdentificacao').select();
-                    swal("Erro", objData.msg, "error");
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url + '/Usuario/SetUsuario';
+            var formData = new FormData(formUsuario);
+            request.open("POST", ajaxUrl, true);
+            request.send(formData);
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
+                    if (objData.status) {
+                        $('#modalFormUsuario').modal("hide");
+                        Cancelar();
+                        swal("Usuário", objData.msg, "success");
+                        tableUsuario.api().ajax.reload(function () { });
+                    } else {
+                        $('#txtIdentificacao').select();
+                        swal("Erro", objData.msg, "error");
+                    }
                 }
             }
         }
@@ -277,16 +279,18 @@ window.addEventListener('load', function () {
 }, false);
 
 function CarregarCargosUsuario() {
-    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxUrl = base_url + '/Cargo/GetSelectCargos';
-    request.open("GET", ajaxUrl, true);  // Abrir requisição ao servidor
-    request.send(); // Enviar requisição ao servidor
-    request.onreadystatechange = function () { // Obter o reseultado da requisição AJAX
-        if (request.readyState == 4 && request.status == 200) {
-            document.querySelector('#listCargo').innerHTML += request.responseText;
-            // document.querySelector('#listCargo').value += 0;
-            // $('#listCargo').selectpicker('render');
-            // $('#listCargo').selectpicker('refresh');
+    if (document.querySelector('#listCargo')) {
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        var ajaxUrl = base_url + '/Cargo/GetSelectCargos';
+        request.open("GET", ajaxUrl, true);  // Abrir requisição ao servidor
+        request.send(); // Enviar requisição ao servidor
+        request.onreadystatechange = function () { // Obter o reseultado da requisição AJAX
+            if (request.readyState == 4 && request.status == 200) {
+                document.querySelector('#listCargo').innerHTML += request.responseText;
+                // document.querySelector('#listCargo').value += 0;
+                // $('#listCargo').selectpicker('render');
+                // $('#listCargo').selectpicker('refresh');
+            }
         }
     }
 }
@@ -300,7 +304,9 @@ function Cancelar() {
     $("#txtSenha").attr("type", "password");
     $("#txtConfirmacaoSenha").attr("type", "password");
 
-    document.querySelector("#formUsuario").reset();
+    if (document.querySelector("#formUsuario")) {
+        document.querySelector("#formUsuario").reset();
+    }
     $("#modalFormUsuario").modal("hide");
 }
 
@@ -357,4 +363,8 @@ function AlterarCSS() {
     if (document.querySelector('#txtConfirmacaoSenha').value != "") {
         document.getElementById("txtConfirmacaoSenha").classList.remove("is-invalid");
     }
+}
+
+function openModalPerfil() {
+    $("#modalFormPerfil").modal("show");
 }
