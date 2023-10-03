@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
         "order": [[1, "asc"]]
     });
 
+    // Form Usuário
     if (document.querySelector("#formUsuario")) {
         // Inserir novo Usuário
         var formUsuario = document.querySelector("#formUsuario");
@@ -144,6 +145,97 @@ document.addEventListener('DOMContentLoaded', function () {
                         Cancelar();
                         swal("Usuário", objData.msg, "success");
                         tableUsuario.api().ajax.reload(function () { });
+                    } else {
+                        $('#txtIdentificacao').select();
+                        swal("Erro", objData.msg, "error");
+                    }
+                }
+            }
+        }
+    }
+
+    // Form Perfil
+    if (document.querySelector("#formPerfil")) {
+        // Inserir novo Usuário
+        var formUsuario = document.querySelector("#formPerfil");
+        formPerfil.onsubmit = function (e) {
+            e.preventDefault();
+
+            var strIdentificacao = document.querySelector("#txtIdentificacao").value;
+            var strNome = document.querySelector("#txtNome").value;
+            var strSobrenome = document.querySelector("#txtSobrenome").value;
+            var strTelefone = document.querySelector("#txtTelefone").value;
+            var strSenha = document.querySelector("#txtSenha").value;
+            var strConfirmacaoSenha = document.querySelector("#txtConfirmacaoSenha").value;
+
+            if (strIdentificacao == '') {
+                document.getElementById("txtIdentificacao").classList.add("is-invalid");
+            } else {
+                document.getElementById("txtIdentificacao").classList.remove("is-invalid");
+            }
+            if (strNome == '') {
+                document.getElementById("txtNome").classList.add("is-invalid");
+            } else {
+                document.getElementById("txtNome").classList.remove("is-invalid");
+            }
+            if (strSobrenome == '') {
+                document.getElementById("txtSobrenome").classList.add("is-invalid");
+            } else {
+                document.getElementById("txtSobrenome").classList.remove("is-invalid");
+            }
+            if (strTelefone == '') {
+                document.getElementById("txtTelefone").classList.add("is-invalid");
+            } else {
+                document.getElementById("txtTelefone").classList.remove("is-invalid");
+            }
+            if (document.querySelector("#formUsuario") || (document.querySelector("#formPerfil") && strSenha != "" || strConfirmacaoSenha != '')) {
+                if (strSenha == '') {
+                    document.getElementById("txtSenha").classList.add("is-invalid");
+                } else {
+                    document.getElementById("txtSenha").classList.remove("is-invalid");
+                }
+                if (strConfirmacaoSenha == '') {
+                    document.getElementById("txtConfirmacaoSenha").classList.add("is-invalid");
+                } else {
+                    document.getElementById("txtConfirmacaoSenha").classList.remove("is-invalid");
+                }
+                if (strIdentificacao = '' || strNome == '' || strSobrenome == '' || strTelefone == '' || strSenha == '' || strConfirmacaoSenha == '') {
+                    swal("Atenção", "Todos os campos são obrigatórios!", "error");
+                    return false;
+                }
+            } else {
+                if (strIdentificacao = '' || strNome == '' || strSobrenome == '' || strTelefone == '') {
+                    swal("Atenção", "Todos os campos são obrigatórios!", "error");
+                    return false;
+                }
+            }
+
+            $("#txtSenha").attr("type", "password");
+            $("#txtConfirmacaoSenha").attr("type", "password");
+
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url + '/Usuario/putUsuario';
+            var formData = new FormData(formPerfil);
+            request.open("POST", ajaxUrl, true);
+            request.send(formData);
+            request.onreadystatechange = function () {
+                if (request.readyState != 4) return;
+
+                if (request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
+                    if (objData.status) {
+                        $('#modalFormPerfil').modal("hide");
+                        swal({
+                            title: "",
+                            text: objData.msg,
+                            type: "success",
+                            confirmButtonText: "Aceitar",
+                            closeOnConfirm: false,
+                        }, function (isConfirm) {
+                            if (isConfirm) {
+                                location.reload();
+                            }
+                        });
                     } else {
                         $('#txtIdentificacao').select();
                         swal("Erro", objData.msg, "error");
@@ -324,15 +416,17 @@ function MostrarSenha() {
 function ValidaSenha() {
     var strSenha = document.querySelector("#txtSenha").value;
     var strConfirmacaoSenha = document.querySelector("#txtConfirmacaoSenha").value;
-    if (strSenha != strConfirmacaoSenha) {
-        var strSenha = document.querySelector("#validaSenha").style.display = "";
-        document.querySelector("#btnActionForm").disabled = true;
+    if (document.querySelector("#formUsuario") || (document.querySelector("#formPerfil") && strSenha != "" || strConfirmacaoSenha != '')) {
+        if (strSenha != strConfirmacaoSenha) {
+            var strSenha = document.querySelector("#validaSenha").style.display = "";
+            document.querySelector("#btnActionForm").disabled = true;
+        }
+        else {
+            var strSenha = document.querySelector("#validaSenha").style.display = "none";
+            document.querySelector("#btnActionForm").disabled = false;
+        }
+        AlterarCSS();
     }
-    else {
-        var strSenha = document.querySelector("#validaSenha").style.display = "none";
-        document.querySelector("#btnActionForm").disabled = false;
-    }
-    AlterarCSS();
 }
 
 function AlterarCSS() {
@@ -351,11 +445,15 @@ function AlterarCSS() {
     if (document.querySelector('#txtEmail').value != "") {
         document.getElementById("txtEmail").classList.remove("is-invalid");
     }
-    if (document.querySelector('#listCargo').value != 0) {
-        document.getElementById("listCargo").classList.remove("is-invalid");
+    if (document.querySelector('#listCargo')) {
+        if (document.querySelector('#listCargo').value != 0) {
+            document.getElementById("listCargo").classList.remove("is-invalid");
+        }
     }
-    if (document.querySelector('#listStatus').value != 0) {
-        document.getElementById("listStatus").classList.remove("is-invalid");
+    if (document.querySelector('#listStatus')) {
+        if (document.querySelector('#listStatus').value != 0) {
+            document.getElementById("listStatus").classList.remove("is-invalid");
+        }
     }
     if (document.querySelector('#txtSenha').value != "") {
         document.getElementById("txtSenha").classList.remove("is-invalid");
@@ -366,5 +464,11 @@ function AlterarCSS() {
 }
 
 function openModalPerfil() {
+    var strSenha = document.querySelector("#validaSenha").style.display = "none";
+    document.querySelector("#btnActionForm").disabled = false;
+
+    document.querySelector("#txtSenha").value = "";
+    document.querySelector("#txtConfirmacaoSenha").value = "";
+
     $("#modalFormPerfil").modal("show");
 }

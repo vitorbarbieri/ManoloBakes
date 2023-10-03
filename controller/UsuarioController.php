@@ -150,4 +150,31 @@ class UsuarioController extends Controller
         $data['page_functions_js'] = "functionsUsuario.js";
         $this->views->getView($this, "perfil", $data);
     }
+
+    public function putUsuario()
+    {
+        if ($_POST) {
+            $intId = $_SESSION['idUser'];
+            $strIdentificacao = strClean($_POST['txtIdentificacao']);
+            $strNome = ucwords(strClean($_POST['txtNome']));
+            $strSobrenome = ucwords(strClean($_POST['txtSobrenome']));
+            $strTelefone = strClean($_POST['txtTelefone']);
+
+            $strSenha = "";
+            if (strClean($_POST['txtSenha'])) {
+                $strSenha = strClean($_POST['txtSenha']);
+            }
+
+            $request_user = $this->model->updatePerfil($intId, $strIdentificacao, $strNome, $strSobrenome, $strTelefone, $strSenha);
+
+            if ($request_user) {
+                sessionUser($_SESSION['idUser']);
+                $arrResponse = array('status' => true, 'msg' => 'Dados atualizados corretamente.');
+            } else {
+                $arrResponse = array("status" => false, "msg" => 'Não foi possível atualziar os dados.');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
 }

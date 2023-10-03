@@ -78,13 +78,21 @@ function GetPermissoes(int $idModulo)
     $permissoes = "";
     $permissoesModulos = "";
 
-    if(count($arrPermissoes) > 0 ){
+    if (count($arrPermissoes) > 0) {
         $permissoes = $arrPermissoes;
         $permissoesModulos = isset($arrPermissoes[$idModulo]) ? $arrPermissoes[$idModulo] : "";
     }
 
     $_SESSION['permissoes'] = $permissoes;
     $_SESSION['permissoesModulos'] = $permissoesModulos;
+}
+
+function sessionUser(int $id)
+{
+    require_once("model/LoginModel.php");
+    $objLogin = new LoginModel();
+    $request = $objLogin->sessionLogin($id);
+    return $request;
 }
 
 // Limpa string

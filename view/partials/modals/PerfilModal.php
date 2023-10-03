@@ -9,7 +9,6 @@
                 <div class="tile">
                     <div class="tile-body">
                         <form id="formPerfil" name="formPerfil" class="form-horizontal">
-                            <input type="hidden" id="idUsuario" name="idUsuario">
                             <div class="form-group">
                                 <label class="cor-azul">*</label>&nbsp;
                                 <label class="control-label">Campo obrigatório</label>

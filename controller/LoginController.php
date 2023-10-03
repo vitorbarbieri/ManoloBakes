@@ -40,7 +40,9 @@ class LoginController extends Controller
                         $_SESSION['login'] = true;
 
                         $arrData = $this->model->SessionLogin($_SESSION['idUser']);
-                        $_SESSION['userData'] = $arrData;
+
+                        sessionUser($_SESSION['idUser']);
+                        // $_SESSION['userData'] = $arrData;
 
                         $arrResponse = array('status' => true, 'msg' => "ok");
                     } else {

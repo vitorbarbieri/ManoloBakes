@@ -42,6 +42,7 @@ class LoginModel extends Mysql
                 INNER JOIN cargo c ON c.id = p.id_cargo
                 WHERE p.id = $this->idUser";
         $request = $this->select($sql);
+        $_SESSION['userData'] = $request;
         return $request;
     }
 
