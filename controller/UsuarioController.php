@@ -140,4 +140,14 @@ class UsuarioController extends Controller
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
+
+    public function perfil()
+    {
+        $data['page_id'] = 4;
+        $data['page_tag'] = "Perfil - Manolo Bakes";
+        $data['page_title'] = "Perfil";
+        $data['page_name'] = "Perfil";
+        $data['page_functions_js'] = "functionsUsuario.js";
+        $this->views->getView($this, "perfil", $data);
+    }
 }
